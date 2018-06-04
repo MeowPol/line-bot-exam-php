@@ -28,7 +28,14 @@ if (!is_null($events['events'])) {
 				$dts = $event['timestamp'];
 			}
 			//$dts = strpos($event['message']['text'], '\n');
-			$dts = $event['message']['text'];
+			$str = $event['message']['text'];
+			$j = 0;
+			$dts = '';
+			foreach ($str  as $s) {
+				$dts = $j+' '+$s+'\n';
+				$j++;
+			}
+			
 
 			// Build message to reply back
 			$messages = [
