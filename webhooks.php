@@ -47,13 +47,7 @@ if (!is_null($events['events'])) {
 			
 			//****get number
 			$s1 = strpos($str, "4.");
-			$s2 = strpos($str, " ", $s1);
-			
-			$s22 = strpos($str, "\n", $s1);
-			if ($s22 === false) { //not found
-			} else if($s22 < $s2){
-				$s2 = $s22;	
-			}
+			$s2 = strpos($str, "\n", $s1);
 			
 			$s23 = strpos($str, "\r", $s1);
 			if ($s23 === false) { //not found
@@ -61,7 +55,7 @@ if (!is_null($events['events'])) {
 				$s2 = $s23;	
 			}
 			$str = substr($str, $s1+2, $s2-($s1+2)+1);
-			//$num = preg_replace("/[^0-9]/", '', $str);
+			$num = preg_replace("/[^0-9]/", '', $str);
 			
 			$dts = $stationname . " " . $num;
 			
