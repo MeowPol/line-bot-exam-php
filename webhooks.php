@@ -24,29 +24,15 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			
-			/*
-			if($i == 0){
-				$dts = $event['timestamp'];
-			}
-			//$dts = strpos($event['message']['text'], '\n');
-			$str = str_split($event['message']['text']);
-			$j = 0;
-			$dts = '';
-			
-			foreach ($str as $s) {
-				$d = strval($j) . " " . $s . "\n";
- 				$dts .= $d;
-				echo $d . "\r\n";
-				$j++;
-			}
-			*/
-
+				
 			$str = $event['message']['text'];
 			$s1 = strpos($str, "สภ.");
 			$s2 = strpos($str, " ", $s1);
+			$s3 = strpos($str, "\n", $s1);
+			$s4 = strpos($str, "\r", $s1);
 			//substr(string,start,length)
-			$dts = substr($str, $s1, $s2-$s1+1);
-			
+			//$dts = substr($str, $s1, $s2-$s1+1);
+			$dts = $s2 . " " . $s3 . " " . $s4;
 			
 
 			// Build message to reply back
