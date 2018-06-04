@@ -26,8 +26,9 @@ if (!is_null($events['events'])) {
 			
 				
 			$str = $event['message']['text'];			
-			$s1 = strpos($str, "สภ.");
 			
+			// get station name
+			$s1 = strpos($str, "สภ.");
 			$s2 = strpos($str, " ", $s1);
 			
 			$s22 = strpos($str, "\n", $s1);
@@ -42,8 +43,15 @@ if (!is_null($events['events'])) {
 				$s2 = $s23;	
 			}
 			//substr(string,start,length)
-			$dts = substr($str, $s1, $s2-$s1+1);
-			//$dts = $s2 . " " . $s3 . " " . $s4;
+			$stationname = substr($str, $s1, $s2-$s1+1);
+			
+			$num = preg_replace("/[^0-9]/", '', $str);
+			
+			$dts = $stationname . " " . $num;
+			
+			
+			
+			
 			
 
 			// Build message to reply back
