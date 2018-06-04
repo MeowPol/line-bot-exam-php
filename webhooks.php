@@ -5,7 +5,8 @@ require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
 $access_token = 'HhmHkpKXiDAcRf9y1OS5d5s9mRWDtSgf3fPE+Cc7HeIf32Du2KDCkIf2GaH7hTX/36fy72AxGD/+nAyF7oLv2Sd2g9nbKVJqjE9tEWft99ofTFRT7t7qW+BZSB2/5WFrDXT5fuBEl5a5WXg/x4UxvgdB04t89/1O/w1cDnyilFU=';
 
-$date = date("h:i:sa");
+$dts = new DateTime(); //this returns the current date time
+
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -27,7 +28,7 @@ if (!is_null($events['events'])) {
 			$messages = [
 				'type' => 'text',
 				//'text' => $text
-				'text' => $date
+				'text' => strlen($d)
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
