@@ -24,6 +24,7 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 			
+			/*
 			if($i == 0){
 				$dts = $event['timestamp'];
 			}
@@ -38,7 +39,14 @@ if (!is_null($events['events'])) {
 				echo $d . "\r\n";
 				$j++;
 			}
+			*/
 
+			$str = $event['message']['text'];
+			$s1 = strpos($str, "สภ.");
+			$s2 = strpos($str, " ", $s1);
+			//substr(string,start,length)
+			$dts = substr($str, $s1, $s2-$s1+1);
+			
 			
 
 			// Build message to reply back
