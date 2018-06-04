@@ -33,7 +33,9 @@ if (!is_null($events['events'])) {
 			$dts = '';
 			
 			foreach ($str as $s) {
- 				$dts .= strval($j) . " " . $s . "\n";
+				$d = strval($j) . " " . $s . "\n";
+ 				$dts .= $d;
+				echo $d . "\r\n";
 				$j++;
 			}
 
