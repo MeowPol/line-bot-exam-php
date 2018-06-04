@@ -60,8 +60,8 @@ if (!is_null($events['events'])) {
 			} else if($s23 < $s2){
 				$s2 = $s23;	
 			}
-			$str = substr($str, $s1, $s2-$s1+1);
-			$num = preg_replace("/[^0-9]/", '', $str);
+			$str = substr($str, $s1+2, $s2-($s1+2)+1);
+			//$num = preg_replace("/[^0-9]/", '', $str);
 			
 			$dts = $stationname . " " . $num;
 			
