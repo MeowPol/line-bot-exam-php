@@ -16,6 +16,7 @@ $events = json_decode($content, true);
 if (!is_null($events['events'])) {
 	// Loop through each event
 	$i = 0;
+	$dts = "";
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
@@ -43,7 +44,7 @@ if (!is_null($events['events'])) {
 				$s2 = $s23;	
 			}
 			//substr(string,start,length)
-			$stationname = substr($str, $s1, $s2-$s1+1);
+			$stationname = substr($str, $s1, $s2-$s1);
 			
 			//****get number
 			$s1 = strpos($str, "4.");
@@ -54,25 +55,21 @@ if (!is_null($events['events'])) {
 			} else if($s23 < $s2){
 				$s2 = $s23;	
 			}
-			$str = substr($str, $s1+2, $s2-($s1+2)+1);
+			$str = substr($str, $s1+2, $s2-($s1+2));
 			$num = preg_replace("/[^0-9]/", '', $str);
 			
-			$dts = $stationname . " " . $num;
-			
-			
-			
-			
-			
-
-			// Build message to reply back
+			$dts .= "2." . ($i+1) . " " . $stationname . " " . $num . "เรื่อง\n\r";
+		}
+		$i++;
+	}//end foreach
+	
+	// Build message to reply back
 			$messages = [
 				'type' => 'text',
 				//'text' => $text
 				'text' => $dts
 			];
 			
-			
-
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
@@ -92,8 +89,5 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 			echo $result . "\r\n";
-		}
-		$i++;
-	}
 }
 echo "OK";
