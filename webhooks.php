@@ -27,12 +27,13 @@ if (!is_null($events['events'])) {
 			if($i == 0){
 				$dts = $event['timestamp'];
 			}
+			$dts = strpos($event['message']['text'], '\n');
 
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
 				//'text' => $text
-				'text' => strpos($text, '\n')
+				'text' => $dts
 			];
 			
 			
