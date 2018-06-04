@@ -47,6 +47,8 @@ if (!is_null($events['events'])) {
 			$stationname = substr($str, $s1, $s2-$s1);
 			
 			//****get number
+			$str = substr($str, strpos($str, "เพจ"));
+			$s1 = strpos($str, "4.");
 			$s1 = strpos($str, "4.");
 			$s2 = strpos($str, "\n", $s1);
 			
@@ -58,7 +60,7 @@ if (!is_null($events['events'])) {
 			$str = substr($str, $s1+2, $s2-($s1+2));
 			$num = preg_replace("/[^0-9]/", '', $str);
 			
-			$dts .= "2." . ($i+1) . " " . $stationname . " " . $num . "เรื่อง\n\r";
+			$dts .= "2." . ($i+1) . " " . $stationname . " " . $num . " เรื่อง\n\r";
 		}
 		$i++;
 	}//end foreach
