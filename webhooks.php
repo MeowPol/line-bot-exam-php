@@ -25,14 +25,25 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 			
 				
-			$str = $event['message']['text'];
+			$str = $event['message']['text'];			
 			$s1 = strpos($str, "สภ.");
+			
 			$s2 = strpos($str, " ", $s1);
-			$s3 = strpos($str, "\n", $s1);
-			$s4 = strpos($str, "\r", $s1);
+			
+			$s22 = strpos($str, "\n", $s1);
+			if ($s22 === false) { //not found
+			} else if($s22 < $s2){
+				$s2 = $s22;	
+			}
+			
+			$s23 = strpos($str, "\r", $s1);
+			if ($s23 === false) { //not found
+			} else if($s23 < $s2){
+				$s2 = $s23;	
+			}
 			//substr(string,start,length)
-			//$dts = substr($str, $s1, $s2-$s1+1);
-			$dts = $s2 . " " . $s3 . " " . $s4;
+			$dts = substr($str, $s1, $s2-$s1+1);
+			//$dts = $s2 . " " . $s3 . " " . $s4;
 			
 
 			// Build message to reply back
