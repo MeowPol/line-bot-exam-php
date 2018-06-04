@@ -12,11 +12,12 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	// Loop through each event
+	$i = 0;
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
-			$text = $event['source']['userId'];
+			$text = $event['source']['userId']+" "+i;
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
@@ -46,6 +47,7 @@ if (!is_null($events['events'])) {
 
 			echo $result . "\r\n";
 		}
+		i++;
 	}
 }
 echo "OK";
