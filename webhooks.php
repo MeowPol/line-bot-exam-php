@@ -55,7 +55,7 @@ if (!is_null($events['events'])) {
 				$str = substr($str, $s1+2, $s2-($s1+2));
 				$num = preg_replace("/[^0-9]/", '', $str);
 			
-				$dts .= "2." . ($i+1) . " " . $stationname . " " . $num . " เรื่อง\n";
+				$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 			}
 			
 		}
