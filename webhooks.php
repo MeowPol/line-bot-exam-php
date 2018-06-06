@@ -47,7 +47,7 @@ if (!is_null($events['events'])) {
 			$stationname = substr($str, $s1, $s2-$s1);
 			
 			//****get number
-			//$str = substr($str, strpos($str, "เพจ"));
+			$str = substr($str, strpos($str, "เพจ"));
 			$s1 = strpos($str, "5.");
 			$s2 = strpos($str, "ครั้ง", $s1);
 			$str = substr($str, $s1+2, $s2-($s1+2));
