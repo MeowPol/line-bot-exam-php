@@ -49,15 +49,8 @@ if (!is_null($events['events'])) {
 			//****get number
 			//$str = substr($str, strpos($str, "เพจ"));
 			$s1 = strpos($str, "5.");
-			/*
-			$s2 = strpos($str, "\n", $s1);
-			
-			$s23 = strpos($str, "\r", $s1);
-			if ($s23 === false) { //not found
-			} else if($s23 < $s2){
-				$s2 = $s23;	
-			}*/
-			$str = substr($str, $s1+2);
+			$s2 = strpos($str, "ครั้ง", $s1);
+			$str = substr($str, $s1+2, $s2-($s1+2));
 			$num = preg_replace("/[^0-9]/", '', $str);
 			
 			$dts .= "2." . ($i+1) . " " . $stationname . " " . $num . " เรื่อง\n";
