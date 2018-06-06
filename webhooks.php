@@ -57,7 +57,7 @@ if (!is_null($events['events'])) {
 			} else if($s23 < $s2){
 				$s2 = $s23;	
 			}*/
-			$str = substr($str, $s1+2, $s2-($s1+2));
+			$str = substr($str, $s1+2);
 			$num = preg_replace("/[^0-9]/", '', $str);
 			
 			$dts .= "2." . ($i+1) . " " . $stationname . " " . $num . " เรื่อง\n";
