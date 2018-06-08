@@ -44,6 +44,7 @@ if (!is_null($events['events'])) {
 			$s1 = strpos($str, "ประจำวันที่");
 			$s2 = strpos($str, "\n", $s1);
 			
+			$s1 += strlen("ประจำวันที่");
 			$str2 = substr($str, $s1, $s2-$s1);
 			$dts .= $str2 . "  ";
 			
@@ -58,8 +59,6 @@ if (!is_null($events['events'])) {
 			
 			//	$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 			}
-			
-			$dts .= strlen("ประจำวันที่") . "  ";
 		}
 		$i++;
 	}//end foreach
