@@ -43,7 +43,7 @@ if (!is_null($events['events'])) {
 			
 			$s1 += strlen("ประจำวันที่");
 			$str2 = substr($str, $s1, $s2-$s1);
-			$dts .= $str2 . "  ";
+			$dts .= "_" . $str2 . "_  ";
 			
 			/*
 			$s1 = strpos($str2, " ");
