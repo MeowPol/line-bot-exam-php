@@ -28,7 +28,7 @@ if (!is_null($events['events'])) {
 				
 			$str = $event['message']['text'];			
 			
-			//***** get station name
+			//***** get station name *****
 			$s1 = strpos($str, "สภ.");
 			$s2 = strpos($str, " ", $s1);
 			
@@ -46,7 +46,25 @@ if (!is_null($events['events'])) {
 			//substr(string,start,length)
 			$stationname = substr($str, $s1, $s2-$s1);
 			
-			//****get number
+			//***** get date ************
+			$s1 = strpos($str, "ประจำวันที่");
+			$s2 = strpos($str, " ", $s1);
+			
+			$s22 = strpos($str, "\n", $s1);
+			if ($s22 === false) { //not found
+			} else if($s22 < $s2){
+				$s2 = $s22;	
+			}
+			
+			$s23 = strpos($str, "\r", $s1);
+			if ($s23 === false) { //not found
+			} else if($s23 < $s2){
+				$s2 = $s23;	
+			}
+			$str2 = substr($str, $s1, $s2-$s1);
+			$dts .= $str2 . "  ";
+			
+			//***** get number *****
 			$str = substr($str, strpos($str, "เพจ"));
 			$s1 = strpos($str, "5.");
 			if ($s1 === false) { //not found
