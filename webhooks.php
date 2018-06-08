@@ -48,7 +48,7 @@ if (!is_null($events['events'])) {
 			
 			//***** get date ************
 			$s1 = strpos($str, "ประจำวันที่");
-			$s2 = strpos($str, " ", $s1);
+			$s2 = $s1;
 			
 			$s22 = strpos($str, "\n", $s1);
 			if ($s22 === false) { //not found
@@ -73,7 +73,7 @@ if (!is_null($events['events'])) {
 				$str = substr($str, $s1+2, $s2-($s1+2));
 				$num = preg_replace("/[^0-9]/", '', $str);
 			
-				$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
+			//	$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 			}
 			
 		}
