@@ -45,18 +45,6 @@ if (!is_null($events['events'])) {
 			$str2 = trim(substr($str, $s1, $s2-$s1));
 			$dts .= "_" . $str2 . "_  ";
 			
-			/*
-			$s1 = strpos($str2, " ");
-			$d1 = substr($str2, 0, $s1);
-			
-			$s2 = strpos($str2, " ",$s1);
-			$d2 = substr($str2, $s1+1, $s2-($s1+1));
-			
-			$s1 = $s2;
-			$s2 = strpos($str2, " ",$s1);
-			$d3 = substr($str2, $s1+1, $s2-($s1+1));
-			$dts .= $d1 . "__" . $d2 . "__" . $d3;
-			*/
 			$d = explode(" ",$str2);
 			$dts .= $d[0] . "__" . $d[1] . "__" . $d[2];
 			
@@ -69,7 +57,7 @@ if (!is_null($events['events'])) {
 				$str = substr($str, $s1+2, $s2-($s1+2));
 				$num = preg_replace("/[^0-9]/", '', $str);
 			
-			//	$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
+				$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 			}
 		}
 		$i++;
