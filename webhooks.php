@@ -59,6 +59,7 @@ if (!is_null($events['events'])) {
 			//	$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 			}
 			
+			$dts .= strlen("ประจำวันที่") . "  ";
 		}
 		$i++;
 	}//end foreach
