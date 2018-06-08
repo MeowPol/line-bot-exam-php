@@ -45,14 +45,14 @@ if (!is_null($events['events'])) {
 			$str2 = substr($str, $s1, $s2-$s1);
 			$dts .= $str2 . "  ";
 			
-			$s1 = strpos($str, " ");
+			$s1 = strpos($str2, " ");
 			$d1 = substr($str2, 0, $s1);
 			
-			$s2 = strpos($str, " ",$s1);
+			$s2 = strpos($str2, " ",$s1);
 			$d2 = substr($str2, $s1+1, $s2-($s1+1));
 			
 			$s1 = $s2;
-			$s2 = strpos($str, " ",$s1);
+			$s2 = strpos($str2, " ",$s1);
 			$d3 = substr($str2, $s1+1, $s2-($s1+1));
 			$dts .= $d1 . "__" . $d2 . "__" . $d3;
 			
