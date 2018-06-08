@@ -5,9 +5,6 @@ require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
 $access_token = 'HhmHkpKXiDAcRf9y1OS5d5s9mRWDtSgf3fPE+Cc7HeIf32Du2KDCkIf2GaH7hTX/36fy72AxGD/+nAyF7oLv2Sd2g9nbKVJqjE9tEWft99ofTFRT7t7qW+BZSB2/5WFrDXT5fuBEl5a5WXg/x4UxvgdB04t89/1O/w1cDnyilFU=';
 
-$dts = new DateTime(); //this returns the current date time
-
-
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -47,6 +44,17 @@ if (!is_null($events['events'])) {
 			$s1 += strlen("ประจำวันที่");
 			$str2 = substr($str, $s1, $s2-$s1);
 			$dts .= $str2 . "  ";
+			
+			$s1 = strpos($str, " ");
+			$d1 = substr($str2, 0, $s1);
+			
+			$s2 = strpos($str, " ",$s1);
+			$d2 = substr($str2, $s1+1, $s2-($s1+1));
+			
+			$s1 = $s2;
+			$s2 = strpos($str, " ",$s1);
+			$d3 = substr($str2, $s1+1, $s2-($s1+1));
+			$dts .= $d1 . "__" . $d2 . "__" . $d3;
 			
 			//***** get number *****
 			$str = substr($str, strpos($str, "เพจ"));
