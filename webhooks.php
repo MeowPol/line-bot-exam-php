@@ -42,11 +42,14 @@ if (!is_null($events['events'])) {
 			$s2 = strpos($str, "\n", $s1);
 			
 			$s1 += strlen("ประจำวันที่");
-			$str2 = trim(substr($str, $s1, $s2-$s1));
-			$dts .= "_" . $str2 . "_  ";
+			$str2 = preg_replace('!\s+!', ' ', trim(substr($str, $s1, $s2-$s1)));
+			//$dts .= "_" . $str2 . "_  ";
 			
 			$d = explode(" ",$str2);
-			$dts .= $d[0] . "__" . $d[1] . "__" . $d[2];
+			$dts .= $d[0] . "__" . $d[1] . "__" . $d[2] . "  ";
+			
+			
+			
 			
 			//***** get number *****
 			$str = substr($str, strpos($str, "เพจ"));
