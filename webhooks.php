@@ -37,30 +37,13 @@ if (!is_null($events['events'])) {
 			} else if($s22 < $s2){
 				$s2 = $s22;	
 			}
-			
-			$s23 = strpos($str, "\r", $s1);
-			if ($s23 === false) { //not found
-			} else if($s23 < $s2){
-				$s2 = $s23;	
-			}
 			//substr(string,start,length)
 			$stationname = substr($str, $s1, $s2-$s1);
 			
 			//***** get date ************
 			$s1 = strpos($str, "ประจำวันที่");
-			$s2 = $s1;
+			$s2 = strpos($str, "\n", $s1);
 			
-			$s22 = strpos($str, "\n", $s1);
-			if ($s22 === false) { //not found
-			} else if($s22 < $s2){
-				$s2 = $s22;	
-			}
-			
-			$s23 = strpos($str, "\r", $s1);
-			if ($s23 === false) { //not found
-			} else if($s23 < $s2){
-				$s2 = $s23;	
-			}
 			$str2 = substr($str, $s1, $s2-$s1);
 			$dts .= $str2 . "  ";
 			
