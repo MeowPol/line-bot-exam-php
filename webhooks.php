@@ -46,6 +46,8 @@ if (!is_null($events['events'])) {
 			//$dts .= "_" . $str2 . "_  ";
 			
 			$d = explode(" ",$str2);
+			if(strlen($d[0])<2) $d[0] .= "0";
+							
 			$d[1] = str_replace("มกราคม", "01", $d[1]);
 			$d[1] = str_replace("กุมภาพันธ์", "02", $d[1]);
 			$d[1] = str_replace("มีนาคม", "03", $d[1]);
