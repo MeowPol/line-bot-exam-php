@@ -29,7 +29,7 @@ $result = $db->query($query);
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr colspan=4><td>";
     print_r($row);
-    echo "</td></tr>"
+    echo "</td></tr>";
 }
     
 /*
