@@ -25,7 +25,11 @@ $dsn = "pgsql:"
 $db = new PDO($dsn);
 $query = "select * from IOpoliceNPM";
 $result = $db->query($query);    
-    print_r($result->fetchAll());
+//print_r($result->fetchAll());
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    print_r($row);
+    echo "\n";
+}
     
 /*
 $query = "SELECT employee_id, last_name, first_name, title "
