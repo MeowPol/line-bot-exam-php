@@ -25,7 +25,8 @@ $dsn = "pgsql:"
 $db = new PDO($dsn);
 $query = "select * from IOpoliceNPM";
 $result = $db->query($query);    
-    echo ($result->fetchAll());
+    print_r($result->fetchAll());
+    
 /*
 $query = "SELECT employee_id, last_name, first_name, title "
     . "FROM employees ORDER BY last_name ASC, first_name ASC";
