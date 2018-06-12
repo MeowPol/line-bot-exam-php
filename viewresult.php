@@ -27,8 +27,9 @@ $query = "select * from IOpoliceNPM";
 $result = $db->query($query);    
 //print_r($result->fetchAll());
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    echo "<tr colspan=4><td>";
     print_r($row);
-    echo "\n";
+    echo "</td></tr>"
 }
     
 /*
