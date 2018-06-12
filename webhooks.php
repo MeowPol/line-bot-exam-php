@@ -46,31 +46,31 @@ if (!is_null($events['events'])) {
 			//$dts .= "_" . $str2 . "_  ";
 			
 			$d = explode(" ",$str2);
-			str_replace("มกราคม", "01", $d[1]);
-			str_replace("กุมภาพันธ์", "02", $d[1]);
-			str_replace("มีนาคม", "03", $d[1]);
-			str_replace("เมษายน", "04", $d[1]);
-			str_replace("พฤษภาคม", "05", $d[1]);
-			str_replace("มิถุนายน", "06", $d[1]);
-			str_replace("กรกฎาคม", "07", $d[1]);
-			str_replace("สิงหาคม", "08", $d[1]);
-			str_replace("กันยายน", "09", $d[1]);
-			str_replace("ตุลาคม", "10", $d[1]);
-			str_replace("พฤศจิกายน", "11", $d[1]);
-			str_replace("ธันวาคม", "12", $d[1]);
+			$d[1] = str_replace("มกราคม", "01", $d[1]);
+			$d[1] = str_replace("กุมภาพันธ์", "02", $d[1]);
+			$d[1] = str_replace("มีนาคม", "03", $d[1]);
+			$d[1] = str_replace("เมษายน", "04", $d[1]);
+			$d[1] = str_replace("พฤษภาคม", "05", $d[1]);
+			$d[1] = str_replace("มิถุนายน", "06", $d[1]);
+			$d[1] = str_replace("กรกฎาคม", "07", $d[1]);
+			$d[1] = str_replace("สิงหาคม", "08", $d[1]);
+			$d[1] = str_replace("กันยายน", "09", $d[1]);
+			$d[1] = str_replace("ตุลาคม", "10", $d[1]);
+			$d[1] = str_replace("พฤศจิกายน", "11", $d[1]);
+			$d[1] = str_replace("ธันวาคม", "12", $d[1]);
 			
-			str_replace("ม.ค.", "01", $d[1]);
-			str_replace("ก.พ.", "02", $d[1]);
-			str_replace("มี.ค.", "03", $d[1]);
-			str_replace("เม.ย.", "04", $d[1]);
-			str_replace("พ.ค.", "05", $d[1]);
-			str_replace("มิ.ย.", "06", $d[1]);
-			str_replace("ก.ค.", "07", $d[1]);
-			str_replace("ส.ค.", "08", $d[1]);
-			str_replace("ก.ย.", "09", $d[1]);
-			str_replace("ต.ค.", "10", $d[1]);
-			str_replace("พ.ย.", "11", $d[1]);
-			str_replace("ธ.ค.", "12", $d[1]);
+			$d[1] = str_replace("ม.ค.", "01", $d[1]);
+			$d[1] = str_replace("ก.พ.", "02", $d[1]);
+			$d[1] = str_replace("มี.ค.", "03", $d[1]);
+			$d[1] = str_replace("เม.ย.", "04", $d[1]);
+			$d[1] = str_replace("พ.ค.", "05", $d[1]);
+			$d[1] = str_replace("มิ.ย.", "06", $d[1]);
+			$d[1] = str_replace("ก.ค.", "07", $d[1]);
+			$d[1] = str_replace("ส.ค.", "08", $d[1]);
+			$d[1] = str_replace("ก.ย.", "09", $d[1]);
+			$d[1] = str_replace("ต.ค.", "10", $d[1]);
+			$d[1] = str_replace("พ.ย.", "11", $d[1]);
+			$d[1] = str_replace("ธ.ค.", "12", $d[1]);
 			
 			$year = (int) $d[2];
 			if($year < 100){	
@@ -79,7 +79,7 @@ if (!is_null($events['events'])) {
 				$year = $year - 543;
 			}
 			
-			$dts .= $d[2] . "-" . $d[1] . "-" . $d[0] . "  ";
+			$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ";
 			
 			
 			
