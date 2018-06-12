@@ -88,16 +88,12 @@ if (!is_null($events['events'])) {
 			
 			//***** get number *****
 			$str = substr($str, strpos($str, "เพจ"));
-			$s1 = strpos($str, "5.");
+			$s1 = strpos($str, "ยอดรวม");
+			$s2 = strpos($str, "ครั้ง", $s1);
+			$str = substr($str, $s1+2, $s2-($s1+2));
+			$num = preg_replace("/[^0-9]/", '', $str);
 			
-			//if ($s1 === false) { //not found
-			//} else {
-				$s2 = strpos($str, "ครั้ง", $s1);
-				$str = substr($str, $s1+2, $s2-($s1+2));
-				$num = preg_replace("/[^0-9]/", '', $str);
-			
-				//$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
-			//}
+			//$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 			
 			$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ". $stationname . " " . $num[0] . " เรื่อง  เก็บข้อมูลแล้ว\n";
 		}
