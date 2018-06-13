@@ -11,9 +11,23 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
-	// Loop through each event
+	$dsn = "pgsql:"
+	    . "host=ec2-23-21-129-50.compute-1.amazonaws.com;"
+	    . "dbname=dfd97o1ehpqpnh;"
+	    . "user=greeojbcxckhvv;"
+	    . "port=5432;"
+	    . "sslmode=require;"
+	    . "password=e3221695be10dad64a793f3949720bc522c81d1f3c71c71d2d53d998b196f5e8";
+	$db = new PDO($dsn);
+	$sql = $db->prepare("INSERT INTO IOpoliceNPM ( stationname, postdate, number) VALUES (? ,? ,?)");
+	$sql->bindParam(1, $stationname);
+	$sql->bindParam(2, $postdate);
+	$sql->bindParam(3, $numio);
+
 	$i = 0;
 	$dts = "";
+	
+	// Loop through each event	
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
@@ -80,7 +94,7 @@ if (!is_null($events['events'])) {
 			}else{
 				$year = $year - 543;
 			}
-			
+			$postdate = $year . "-" . $d[1] . "-" . $d[0];
 			//$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ";
 			
 			
@@ -92,10 +106,13 @@ if (!is_null($events['events'])) {
 			$s2 = strpos($str, "ครั้ง", $s1);
 			$str = substr($str, $s1+2, $s2-($s1+2));
 			$num = preg_replace("/[^0-9]/", '', $str);
-			
+			$numio = $num[0];
 			//$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 			
-			$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ". $stationname . " " . $num[0] . " เรื่อง  เก็บข้อมูลแล้ว\n";
+			$result = $sql->execute();
+			if($result){
+				$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ". $stationname . " " . $num[0] . " เรื่อง  เก็บข้อมูลแล้ว\n";
+			}
 		}
 		$i++;
 	}//end foreach
