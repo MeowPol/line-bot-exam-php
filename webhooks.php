@@ -26,7 +26,6 @@ if (!is_null($events['events'])) {
 
 	$i = 0;
 	$dts = "";
-	$dts = $content;
 	
 	// Loop through each event	
 	foreach ($events['events'] as $event) {
@@ -114,10 +113,6 @@ if (!is_null($events['events'])) {
 			if($result){
 				$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ". $stationname . " " . $num[0] . " เรื่อง  เก็บข้อมูลแล้ว\n";
 			}
-		}else{// messege type != text
-			//$dts = json_encode($event, JSON_PRETTY_PRINT);
-			$dts = "not text";
-			
 		}
 		$i++;
 	}//end foreach
