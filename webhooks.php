@@ -25,7 +25,7 @@ if (!is_null($events['events'])) {
 	$sql->bindParam(3, $numio);
 
 	$i = 0;
-	$dts = "";
+	$dts = "abc";
 	
 	// Loop through each event	
 	foreach ($events['events'] as $event) {
