@@ -19,7 +19,7 @@ if (!is_null($events['events'])) {
 	    . "sslmode=require;"
 	    . "password=e3221695be10dad64a793f3949720bc522c81d1f3c71c71d2d53d998b196f5e8";
 	$db = new PDO($dsn);
-	$sql = $db->prepare("INSERT INTO IOpoliceNPM ( stationname, postdate, number) VALUES (? ,? ,?)");
+	$sql = $db->prepare("INSERT INTO IOpoliceNPM ( stationname, postdate, numio) VALUES (? ,? ,?)");
 	$sql->bindParam(1, $stationname);
 	$sql->bindParam(2, $postdate);
 	$sql->bindParam(3, $numio);
