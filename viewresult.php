@@ -6,10 +6,9 @@
   <table>
    <thead>
     <tr>
-     <th>Employee ID</th>
-     <th>Last Name</th>
-     <th>First Name</th>
-     <th>Title</th>
+     <th>วันที่</th>
+     <th>สภ.</th>
+     <th>จำนวน</th>
     </tr>
    </thead>
    <tbody>
@@ -27,25 +26,17 @@ $query = "select * from IOpoliceNPM";
 $result = $db->query($query);    
 //print_r($result->fetchAll());
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    /*
     echo "<tr colspan=4><td>";
     print_r($row);
     echo "</td></tr>";
-}
-    
-/*
-$query = "SELECT employee_id, last_name, first_name, title "
-    . "FROM employees ORDER BY last_name ASC, first_name ASC";
-$result = $db->query($query);
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    */
     echo "<tr>";
-    echo "<td>" . $row["employee_id"] . "</td>";
-    echo "<td>" . htmlspecialchars($row["last_name"]) . "</td>";
-    echo "<td>" . htmlspecialchars($row["first_name"]) . "</td>";
-    echo "<td>" . htmlspecialchars($row["title"]) . "</td>";
+    echo "<td>" . $row["postdate"] . "</td>";
+    echo "<td>" . htmlspecialchars($row["stationname"]) . "</td>";
+    echo "<td>" . htmlspecialchars($row["number"]) . "</td>";
     echo "</tr>";
-
 }
-*/
 $result->closeCursor();
 
 ?>
