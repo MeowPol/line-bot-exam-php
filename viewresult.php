@@ -1,6 +1,6 @@
 <html>
  <head>
-  <title>Employees</title>
+  <title></title>
  </head>
  <body>
   <table>
