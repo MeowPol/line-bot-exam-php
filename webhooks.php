@@ -114,7 +114,8 @@ if (!is_null($events['events'])) {
 				$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ". $stationname . " " . $num[0] . " เรื่อง  เก็บข้อมูลแล้ว\n";
 			}
 		}else{// messege type != text
-			$dts = json_encode($event, JSON_PRETTY_PRINT);
+			//$dts = json_encode($event, JSON_PRETTY_PRINT);
+			$dts = "not text";
 			
 		}
 		$i++;
