@@ -34,7 +34,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr>";
     echo "<td>" . $row["postdate"] . "</td>";
     echo "<td>" . htmlspecialchars($row["stationname"]) . "</td>";
-    echo "<td>" . htmlspecialchars($row["number"]) . "</td>";
+    echo "<td>" . htmlspecialchars($row["numio"]) . "</td>";
     echo "</tr>";
 }
 $result->closeCursor();
