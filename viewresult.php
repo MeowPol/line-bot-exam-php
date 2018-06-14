@@ -34,26 +34,37 @@ $db = new PDO($dsn);
     $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' ";
     //$query = "select * from IOpoliceNPM ".$where." order by postdate";
 	   
+	   $query = "SELECT DISTINCT postdate FROM IOpoliceNPM " .$where;
+	   echo $query.'<br/>';
+	   $result = $db->query($query);    
+	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 0));
+	   echo "<br/><br/>";	   
+	   
+	   $query = "SELECT DISTINCT stationname FROM IOpoliceNPM " .$where;
+	   echo $query.'<br/>';
+	   $result = $db->query($query);    
+	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 1));
+	   
+	   /*
+	   $array = array();
+
+$array[0] = array();
+$array[0]['name'] = 'John Doe';
+$array[0]['email'] = 'john@example.com';
+
+$array[1] = array();
+$array[1]['name'] = 'Jane Doe';
+$array[1]['email'] = 'jane@example.com';
+	   
+	   
 	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate, stationname";	   
 	   echo $query.'<br/>';
 	   echo "<br/><br/>";
 	   $result = $db->query($query);    
 	   print_r($result->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP));
     		echo "<br/><br/>";
-	   /*
-	   $query = "SELECT DISTINCT postdate FROM IOpoliceNPM " .$where;
-	   echo $query.'<br/>';
-	   $result = $db->query($query);    
 	   */
-	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 0));
-	   echo "<br/><br/>";
 	   
-	   /*
-	   $query = "SELECT DISTINCT stationname FROM IOpoliceNPM " .$where;
-	   echo $query.'<br/>';
-	   $result = $db->query($query);    
-	   */
-	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 1));
 	   
 
     //$result = $db->query($query);    
