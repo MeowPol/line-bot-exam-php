@@ -75,7 +75,7 @@ if (!is_null($events['events'])) {
 				if ($s1 === false) { //not found ภ.จว.
 					$s1 = strpos($str, "ภ.จว.");
 					$s2 = strpos($str, "\n", $s1);
-					$stationname = substr($str, $s1, $s2-$s1);
+					$stationname = trim(substr($str, $s1, $s2-$s1));
 				}else{// สภ.				
 					$s2 = strpos($str, " ", $s1);
 
@@ -85,8 +85,9 @@ if (!is_null($events['events'])) {
 						$s2 = $s22;	
 					}
 					//substr(string,start,length)
-					$stationname = substr($str, $s1, $s2-$s1);
+					$stationname = trim(substr($str, $s1, $s2-$s1));
 				}
+				
 
 				//***** get date ************
 				$s1 = strpos($str, "ประจำวันที่");
