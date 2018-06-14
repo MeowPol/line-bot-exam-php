@@ -43,17 +43,30 @@ if (!is_null($events['events'])) {
 			if(strcmp($firstline,"สรุปยอด") == 0){
 				$secondline = substr($str, strpos($str, "\n")+1);				
 				//$dts = "1=" . $firstline . "\n2=" . $secondline;
+				$postdate = formatDate($secondline);
 				
-				$query = "select * from IOpoliceNPM where postdate='" . $secondline . "'";
+				$query = "select * from IOpoliceNPM where postdate='" . $postdate . "'";
 				$result = $db->query($query);    
 				//print_r($result->fetchAll());
+				
+				$dts .= "1. สถิติการปฏิบัติการ  io  ประจำวันที่ " . $secondline . "\n";
+				$dts .= "2. จำนวนหัวข้อเผยแพร่ทางสื่อ Social Network ดังนี้\n";
 				$j = 0;
+				$totalio = 0;
+				$provincial = 0;
 				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+					if(strcmp($row["stationname"],"ภ.จว.นครพนม") == 0){
+						$provincial = $row["numio"];
+					}					
+					$totalio += $row["numio"];
+										
 					$dts .= "2." . ($j+1) . " " . $row["stationname"] . " " . $row["numio"] . " เรื่อง\n";
 					$j++;
 				}
-				$result->closeCursor();
-				
+				$dts .= "3. จำนวนเพจที่เผยแพร่ " . $j . " เพจ\n";
+				$dts .= "4 จำนวน IO หน่วยงาน " . $totalio . " เรื่อง\n";
+				$dts .= "5. ยอดรวม " . ($totalio+$provincial) . " ครั้ง\n";
+				$result->closeCursor();				
 			}else{
 			
 				//***** get station name *****
@@ -81,45 +94,8 @@ if (!is_null($events['events'])) {
 				$s1 += strlen("ประจำวันที่");
 				$str2 = preg_replace('!\s+!', ' ', trim(substr($str, $s1, $s2-$s1)));
 				//$dts .= "_" . $str2 . "_  ";
-
-				$d = explode(" ",$str2);
-				if(strlen($d[0])<2) $d[0] = "0" . $d[0];
-
-				$d[1] = str_replace("มกราคม", "01", $d[1]);
-				$d[1] = str_replace("กุมภาพันธ์", "02", $d[1]);
-				$d[1] = str_replace("มีนาคม", "03", $d[1]);
-				$d[1] = str_replace("เมษายน", "04", $d[1]);
-				$d[1] = str_replace("พฤษภาคม", "05", $d[1]);
-				$d[1] = str_replace("มิถุนายน", "06", $d[1]);
-				$d[1] = str_replace("กรกฎาคม", "07", $d[1]);
-				$d[1] = str_replace("สิงหาคม", "08", $d[1]);
-				$d[1] = str_replace("กันยายน", "09", $d[1]);
-				$d[1] = str_replace("ตุลาคม", "10", $d[1]);
-				$d[1] = str_replace("พฤศจิกายน", "11", $d[1]);
-				$d[1] = str_replace("ธันวาคม", "12", $d[1]);
-
-				$d[1] = str_replace("ม.ค.", "01", $d[1]);
-				$d[1] = str_replace("ก.พ.", "02", $d[1]);
-				$d[1] = str_replace("มี.ค.", "03", $d[1]);
-				$d[1] = str_replace("เม.ย.", "04", $d[1]);
-				$d[1] = str_replace("พ.ค.", "05", $d[1]);
-				$d[1] = str_replace("มิ.ย.", "06", $d[1]);
-				$d[1] = str_replace("ก.ค.", "07", $d[1]);
-				$d[1] = str_replace("ส.ค.", "08", $d[1]);
-				$d[1] = str_replace("ก.ย.", "09", $d[1]);
-				$d[1] = str_replace("ต.ค.", "10", $d[1]);
-				$d[1] = str_replace("พ.ย.", "11", $d[1]);
-				$d[1] = str_replace("ธ.ค.", "12", $d[1]);
-
-				$year = (int) $d[2];
-				if($year < 100){	
-					$year = $year+2500-543;
-				}else{
-					$year = $year - 543;
-				}
-				$postdate = $year . "-" . $d[1] . "-" . $d[0];
-				//$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ";
-
+				$postdate = formatDate($str2);
+				
 				//***** get number *****
 				//$str = substr($str, strpos($str, "เพจ"));
 				$s1 = strpos($str, "ยอดรวม");
@@ -167,3 +143,44 @@ if (!is_null($events['events'])) {
 			echo $result . "\r\n";
 }
 echo "OK";
+
+function formatDate($str2){
+	$d = explode(" ",$str2);
+	if(strlen($d[0])<2) $d[0] = "0" . $d[0];
+
+	$d[1] = str_replace("มกราคม", "01", $d[1]);
+	$d[1] = str_replace("กุมภาพันธ์", "02", $d[1]);
+	$d[1] = str_replace("มีนาคม", "03", $d[1]);
+	$d[1] = str_replace("เมษายน", "04", $d[1]);
+	$d[1] = str_replace("พฤษภาคม", "05", $d[1]);
+	$d[1] = str_replace("มิถุนายน", "06", $d[1]);
+	$d[1] = str_replace("กรกฎาคม", "07", $d[1]);
+	$d[1] = str_replace("สิงหาคม", "08", $d[1]);
+	$d[1] = str_replace("กันยายน", "09", $d[1]);
+	$d[1] = str_replace("ตุลาคม", "10", $d[1]);
+	$d[1] = str_replace("พฤศจิกายน", "11", $d[1]);
+	$d[1] = str_replace("ธันวาคม", "12", $d[1]);
+
+	$d[1] = str_replace("ม.ค.", "01", $d[1]);
+	$d[1] = str_replace("ก.พ.", "02", $d[1]);
+	$d[1] = str_replace("มี.ค.", "03", $d[1]);
+	$d[1] = str_replace("เม.ย.", "04", $d[1]);
+	$d[1] = str_replace("พ.ค.", "05", $d[1]);
+	$d[1] = str_replace("มิ.ย.", "06", $d[1]);
+	$d[1] = str_replace("ก.ค.", "07", $d[1]);
+	$d[1] = str_replace("ส.ค.", "08", $d[1]);
+	$d[1] = str_replace("ก.ย.", "09", $d[1]);
+	$d[1] = str_replace("ต.ค.", "10", $d[1]);
+	$d[1] = str_replace("พ.ย.", "11", $d[1]);
+	$d[1] = str_replace("ธ.ค.", "12", $d[1]);
+
+	$year = (int) $d[2];
+	if($year < 100){	
+		$year = $year+2500-543;
+	}else{
+		$year = $year - 543;
+	}
+	return $year . "-" . $d[1] . "-" . $d[0];	
+	
+}
+?>
