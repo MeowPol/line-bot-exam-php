@@ -47,7 +47,7 @@ $db = new PDO($dsn);
 			$totalio = array();
 	   for($i=0; $i<count($postdatearr); $i++){
 		   $array[$postdatearr[$i]] = array();
-		   $totalio[$i] = 0;
+		   $totalio[$postdatearr[$i]] = 0;
 		   for($j=0; $j<count($namearr); $j++){
 			   $array[$postdatearr[$i]][$namearr[$j]] = 0;
 		   }
@@ -98,6 +98,7 @@ $db = new PDO($dsn);
 				echo "<td>". $totalio[$j]."</td>";
 			}
 			echo "</tr>";
+			print_r($totalio);
     
 	   //$result = $db->query($query);    
 	
