@@ -41,16 +41,22 @@ if (!is_null($events['events'])) {
 			
 			//***** get station name *****
 			$s1 = strpos($str, "สภ.");
-			$s2 = strpos($str, " ", $s1);
-			
-			$s22 = strpos($str, "\n", $s1);
-			if ($s22 === false) { //not found
-			} else if($s22 < $s2){
-				$s2 = $s22;	
+			if ($s1 === false) { //not found ภ.จว.
+				$s1 = strpos($str, "ภ.จว.");
+				$s2 = strpos($str, "\n", $s1);
+				$stationname = substr($str, $s1, $s2-$s1);
+			}else{// สภ.				
+				$s2 = strpos($str, " ", $s1);
+
+				$s22 = strpos($str, "\n", $s1);
+				if ($s22 === false) { //not found
+				} else if($s22 < $s2){
+					$s2 = $s22;	
+				}
+				//substr(string,start,length)
+				$stationname = substr($str, $s1, $s2-$s1);
 			}
-			//substr(string,start,length)
-			$stationname = substr($str, $s1, $s2-$s1);
-			
+						
 			//***** get date ************
 			$s1 = strpos($str, "ประจำวันที่");
 			$s2 = strpos($str, "\n", $s1);
@@ -101,7 +107,7 @@ if (!is_null($events['events'])) {
 			
 			
 			//***** get number *****
-			$str = substr($str, strpos($str, "เพจ"));
+			//$str = substr($str, strpos($str, "เพจ"));
 			$s1 = strpos($str, "ยอดรวม");
 			$s2 = strpos($str, "ครั้ง", $s1);
 			$str = substr($str, $s1+2, $s2-($s1+2));
@@ -109,7 +115,7 @@ if (!is_null($events['events'])) {
 			$numio = $num[0];
 			
 			
-			$result = $sql->execute();
+			//$result = $sql->execute();
 			if($result){
 				$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 				//$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ". $stationname . " " . $num[0] . " เรื่อง  เก็บข้อมูลแล้ว\n";
