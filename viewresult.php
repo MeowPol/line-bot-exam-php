@@ -33,8 +33,8 @@ $db = new PDO($dsn);
 
     $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' ";
     //$query = "select * from IOpoliceNPM ".$where." order by postdate";
-	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate";
 	   
+	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate";	   
 	   echo $query.'<br/>';
 	   $result = $db->query($query);    
 	   print_r($result->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP));
@@ -49,7 +49,6 @@ $db = new PDO($dsn);
 	   $result = $db->query($query);    
 	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 0));
 	   
-	   PDO::FETCH_COLUMN|PDO::FETCH_GROUP
 
     //$result = $db->query($query);    
 	//print_r($result->fetchAll());
