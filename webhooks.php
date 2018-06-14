@@ -115,12 +115,13 @@ if (!is_null($events['events'])) {
 				//$dts .= "_" . $str2 . "_  ";
 				$postdate = formatDate($str2);
 				
-				//$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
-
+				$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
+				/*
 				$result = $sql->execute();
 				if($result){
 					$dts .= $str2 . "  ". $stationname . " " . $num[0] . " เรื่อง  เก็บข้อมูลแล้ว\n";
 				}
+				*/
 			}
 		}
 		$i++;
