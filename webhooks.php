@@ -41,22 +41,19 @@ if (!is_null($events['events'])) {
 			
 			$firstline = substr($str, 0, strpos($str, "\n"));
 			if(strcmp($firstline,"สรุปยอด") == 0){
-				$secondline = substr($str, strpos($str, "\n")+1);
+				$secondline = substr($str, strpos($str, "\n")+1);				
+				//$dts = "1=" . $firstline . "\n2=" . $secondline;
 				
-				$dts = "1 = " . $firstline . "\n2=" . $secondline;
-				/*
-				$query = "select * from IOpoliceNPM";
+				$query = "select * from IOpoliceNPM where postdate=" . $secondline;
 				$result = $db->query($query);    
 				//print_r($result->fetchAll());
+				$j = 0;
 				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-				    echo "<tr>";
-				    echo "<td>" . $row["postdate"] . "</td>";
-				    echo "<td>" . htmlspecialchars($row["stationname"]) . "</td>";
-				    echo "<td>" . htmlspecialchars($row["numio"]) . "</td>";
-				    echo "</tr>";
+					$dts .= "2." . ($j+1) . " " . $row["stationname"] . " " . $row["numio"] . " เรื่อง\n";
+					$j++;
 				}
 				$result->closeCursor();
-				*/
+				
 			}else{
 			
 				//***** get station name *****
