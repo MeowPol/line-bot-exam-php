@@ -31,13 +31,23 @@ $db = new PDO($dsn);
     echo $month_start.'<br/>';
     echo $month_end.'<br/>';
 
+    $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' ";
+    //$query = "select * from IOpoliceNPM ".$where." order by postdate";
+	   //$query = "select postdate, stationname, count(numio) from IOpoliceNPM ".$where." group by postdate, stationname order by postdate";
     
-    //$query = "select * from IOpoliceNPM where postdate between '" . $month_start . "' and '" .$month_end. "' order by postdate";
-	   $query = "select postdate, stationname, count(numio) from IOpoliceNPM where postdate between '" . $month_start . "' and '" .$month_end. "' group by postdate, stationname order by postdate";
-    echo $query.'<br/>';
+	   $query = "SELECT DISTINCT postdate FROM IOpoliceNPM " .$where;
+	   echo $query.'<br/>';
+	   $result = $db->query($query);    
+	   print_r($result->fetchAll());
+	   
+	   $query = "SELECT DISTINCT stationname FROM IOpoliceNPM " .$where;
+	   echo $query.'<br/>';
+	   $result = $db->query($query);    
+	   print_r($result->fetchAll());
 
-    $result = $db->query($query);    
+    //$result = $db->query($query);    
 	//print_r($result->fetchAll());
+	   /*
 	while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 		echo "<tr>";
 		echo "<td>" . $row["postdate"] . "</td>";
@@ -45,6 +55,7 @@ $db = new PDO($dsn);
 		echo "<td>" . htmlspecialchars($row["numio"]) . "</td>";
 		echo "</tr>";
 	}
+	*/
 	$result->closeCursor();
 
 ?>
