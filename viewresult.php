@@ -13,6 +13,7 @@
    </thead>
    <tbody>
 <?php
+    /*
 $dsn = "pgsql:"
     . "host=ec2-23-21-129-50.compute-1.amazonaws.com;"
     . "dbname=dfd97o1ehpqpnh;"
@@ -22,7 +23,7 @@ $dsn = "pgsql:"
     . "password=e3221695be10dad64a793f3949720bc522c81d1f3c71c71d2d53d998b196f5e8";
 
 $db = new PDO($dsn);
-
+*/
 $dt = new DateTime;
 $dt->setTime(0, 0);
 echo $dt->format('H:i:s');
