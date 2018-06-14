@@ -13,7 +13,7 @@
    </thead>
    <tbody>
 <?php
-/*    
+    
 $dsn = "pgsql:"
     . "host=ec2-23-21-129-50.compute-1.amazonaws.com;"
     . "dbname=dfd97o1ehpqpnh;"
@@ -23,8 +23,6 @@ $dsn = "pgsql:"
     . "password=e3221695be10dad64a793f3949720bc522c81d1f3c71c71d2d53d998b196f5e8";
 
 $db = new PDO($dsn);
-*/
-    
 
     $dt = date_create();
     $dt->setTime(0, 0);
@@ -32,34 +30,22 @@ $db = new PDO($dsn);
     $month_end = date_format($dt,"Y-m-t H:i:s");
     echo $month_start.'<br/>';
     echo $month_end.'<br/>';
-    
 
-     
-/*     
- $month_start = strtotime('first day of this month', time());
- $month_end = strtotime('last day of this month', time());
- echo date('D, M jS Y', $month_start).'<br/>';
- echo date('D, M jS Y', $month_end).'<br/>';
-  */  
     
-    
-    
-/*
-$today = getdate();
-$postdate = "2018-06-13";
-    
-$query = "select * from IOpoliceNPM where postdate='" . $postdate . "'";
-$result = $db->query($query);    
-//print_r($result->fetchAll());
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    echo "<tr>";
-    echo "<td>" . $row["postdate"] . "</td>";
-    echo "<td>" . htmlspecialchars($row["stationname"]) . "</td>";
-    echo "<td>" . htmlspecialchars($row["numio"]) . "</td>";
-    echo "</tr>";
-}
-$result->closeCursor();
-*/
+    $query = "select * from IOpoliceNPM where postdate between '" . $month_start . "' and '" .$month_end. "'";
+    echo $query.'<br/>';
+
+    $result = $db->query($query);    
+	//print_r($result->fetchAll());
+	while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+		echo "<tr>";
+		echo "<td>" . $row["postdate"] . "</td>";
+		echo "<td>" . htmlspecialchars($row["stationname"]) . "</td>";
+		echo "<td>" . htmlspecialchars($row["numio"]) . "</td>";
+		echo "</tr>";
+	}
+	$result->closeCursor();
+
 ?>
    </tbody>
   </table>
