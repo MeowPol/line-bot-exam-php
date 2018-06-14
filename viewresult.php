@@ -75,7 +75,7 @@ $db = new PDO($dsn);
 		   echo "*********************************************";
 		   print_r($row);
 		   echo "<br/><br/>";
-		   print_r($array);
+		   //print_r($array);
 		   echo "<br/><br/>";
 		   print_r($totalio);
 		   echo "<br/><br/>";
