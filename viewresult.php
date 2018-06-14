@@ -26,8 +26,8 @@ $db = new PDO($dsn);
 
 $month_start = strtotime('first day of this month', time());
 $month_end = strtotime('last day of this month', time());
-    $d1 = date_format($month_start,"Y-m-d");
-    $d2 = date_format($month_end,"Y-m-d");
+    //$d1 = date_format($month_start,"Y-m-d");
+    //$d2 = date_format($month_end,"Y-m-d");
 echo $month_start.'<br/>';
 echo $month_end.'<br/>';
     
