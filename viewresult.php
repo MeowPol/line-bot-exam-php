@@ -19,8 +19,6 @@ $dsn = "pgsql:"
 
 $db = new PDO($dsn);
 
-
-
 	   $dt = date_create();
 	   $dt->setTime(0, 0);
 	   $month_start = date_format($dt,"Y-m-01 H:i:s");
@@ -46,8 +44,10 @@ $db = new PDO($dsn);
 	   //echo "<br/><br/>";
 	   	   
 	   $array = array();
+			$totalio = array();
 	   for($i=0; $i<count($postdatearr); $i++){
 		   $array[$postdatearr[$i]] = array();
+		   $totalio[$i] = 0;
 		   for($j=0; $j<count($namearr); $j++){
 			   $array[$postdatearr[$i]][$namearr[$j]] = 0;
 		   }
@@ -55,6 +55,8 @@ $db = new PDO($dsn);
 	
 	   //print_r($array);
 	   //echo "<br/><br/>";
+			
+		
 
 	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate, stationname";	   
 	   //echo $query.'<br/>';
@@ -62,27 +64,40 @@ $db = new PDO($dsn);
 	   $result = $db->query($query);    
 	   while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 		   $array[$row["postdate"]][$row["stationname"]] = $row["numio"];
+		   
+		   $cmp = strcmp($row["stationname"],"ภ.จว.นครพนม");
+					if($cmp == 0){
+						$totalio[$row["postdate"]] += $row["numio"]*2;
+					}else{
+						$totalio[$row["postdate"]] += $row["numio"];
+					}
+					
 	   }
 	   //print_r($array);    	
 	   //echo "<br/><br/>";
 	   
-			echo "<td></td>";
+
+		echo "<td></td>";
 		for($i=0; $i<count($postdatearr); $i++){
 			echo "<td>". $postdatearr[$i]."</td>";
 		}
-			echo "</tr></thead>";
+		echo "</tr></thead>";
 			
 		
 		echo "<tbody>";
-			for($j=0; $j<count($namearr); $j++){
-				echo "<tr><td>".$namearr[$j]."</td>";
-			   for($i=0; $i<count($postdatearr); $i++){
-			   echo "<td>". $array[$postdatearr[$i]][$namearr[$j]]."</td>";
-		   		}
-				echo "</tr>";
-	   		}
-
-
+		for($j=0; $j<count($namearr); $j++){
+			echo "<tr><td>".$namearr[$j]."</td>";
+			for($i=0; $i<count($postdatearr); $i++){
+				echo "<td>". $array[$postdatearr[$i]][$namearr[$j]]."</td>";
+		   	}
+			echo "</tr>";
+	   	}
+		
+			echo "<tr><td>รวม</td>";
+			for($j=0; $j<count($totalio); $j++){
+				echo "<td>". $totalio[$j]."</td>";
+			}
+			echo "</tr>";
     
 	   //$result = $db->query($query);    
 	
