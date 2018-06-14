@@ -36,15 +36,17 @@ $db = new PDO($dsn);
 	   
 	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate, stationname";	   
 	   echo $query.'<br/>';
+	   echo "<br/><br/>";
 	   $result = $db->query($query);    
 	   print_r($result->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP));
-    
+    		echo "<br/><br/>";
 	   /*
 	   $query = "SELECT DISTINCT postdate FROM IOpoliceNPM " .$where;
 	   echo $query.'<br/>';
 	   $result = $db->query($query);    
 	   */
 	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 0));
+	   echo "<br/><br/>";
 	   
 	   /*
 	   $query = "SELECT DISTINCT stationname FROM IOpoliceNPM " .$where;
