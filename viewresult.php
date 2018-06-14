@@ -27,6 +27,15 @@ $db = new PDO($dsn);
 $dt = new DateTime;
 $dt->setTime(0, 0);
 echo $dt->format('H:i:s');
+
+    $dt1 = clone $dt;
+    
+    $d = $dt->format('Y') . "-" . $dt->format('m') . "-1"; 
+    $date = date_create($d);
+    
+
+    echo $d;
+    
     
 /*
 $today = getdate();
