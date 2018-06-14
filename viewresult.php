@@ -22,7 +22,10 @@ $dsn = "pgsql:"
     . "password=e3221695be10dad64a793f3949720bc522c81d1f3c71c71d2d53d998b196f5e8";
 
 $db = new PDO($dsn);
-$query = "select * from IOpoliceNPM";
+
+$postdate = "2018-06-13";
+    
+$query = "select * from IOpoliceNPM where postdate=" . $postdate;
 $result = $db->query($query);    
 //print_r($result->fetchAll());
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
