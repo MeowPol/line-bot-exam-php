@@ -39,9 +39,23 @@ if (!is_null($events['events'])) {
 				
 			$str = $event['message']['text'];
 			
-			$firstline = substr($str, 0, strpos($str, "\n"));			
+			$firstline = substr($str, 0, strpos($str, "\n"));
 			if(strcmp($firstline,"สรุปยอด") == 0){
-				$dts = "สรุปยอด";
+				$secondline = substr($str, strpos($str, "\n"));
+				$dts = "1 = " . $firstline . "\n2=" . $secondline;
+				/*
+				$query = "select * from IOpoliceNPM";
+				$result = $db->query($query);    
+				//print_r($result->fetchAll());
+				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+				    echo "<tr>";
+				    echo "<td>" . $row["postdate"] . "</td>";
+				    echo "<td>" . htmlspecialchars($row["stationname"]) . "</td>";
+				    echo "<td>" . htmlspecialchars($row["numio"]) . "</td>";
+				    echo "</tr>";
+				}
+				$result->closeCursor();
+				*/
 			}else{
 			
 				//***** get station name *****
