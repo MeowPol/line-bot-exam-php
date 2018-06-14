@@ -44,7 +44,7 @@ if (!is_null($events['events'])) {
 				$secondline = substr($str, strpos($str, "\n")+1);				
 				//$dts = "1=" . $firstline . "\n2=" . $secondline;
 				
-				$query = "select * from IOpoliceNPM where postdate=" . $secondline;
+				$query = "select * from IOpoliceNPM where postdate='" . $secondline . "'";
 				$result = $db->query($query);    
 				//print_r($result->fetchAll());
 				$j = 0;
