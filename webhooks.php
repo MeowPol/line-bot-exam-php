@@ -116,7 +116,7 @@ if (!is_null($events['events'])) {
 				$postdate = formatDate($str2);
 				
 				//$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
-				$dts .= $postdate . " " . $stationname . " " . $numio . " เรื่อง\n";
+				$dts .= $str2 . " " . $postdate . " " . $stationname . " " . $numio . " เรื่อง\n";
 				
 				$result = $sql->execute();
 				if($result){
