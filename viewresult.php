@@ -34,20 +34,24 @@ $db = new PDO($dsn);
     $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' ";
     //$query = "select * from IOpoliceNPM ".$where." order by postdate";
 	   
-	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate";	   
+	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate, stationname";	   
 	   echo $query.'<br/>';
 	   $result = $db->query($query);    
 	   print_r($result->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP));
     
+	   /*
 	   $query = "SELECT DISTINCT postdate FROM IOpoliceNPM " .$where;
 	   echo $query.'<br/>';
 	   $result = $db->query($query);    
+	   */
 	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 0));
 	   
+	   /*
 	   $query = "SELECT DISTINCT stationname FROM IOpoliceNPM " .$where;
 	   echo $query.'<br/>';
 	   $result = $db->query($query);    
-	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 0));
+	   */
+	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 1));
 	   
 
     //$result = $db->query($query);    
