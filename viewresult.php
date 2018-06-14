@@ -32,7 +32,7 @@ $db = new PDO($dsn);
     echo $month_end.'<br/>';
 
     
-    $query = "select * from IOpoliceNPM where postdate between '" . $month_start . "' and '" .$month_end. "'";
+    $query = "select * from IOpoliceNPM where postdate between '" . $month_start . "' and '" .$month_end. "' order by postdate";
     echo $query.'<br/>';
 
     $result = $db->query($query);    
