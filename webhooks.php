@@ -76,6 +76,15 @@ if (!is_null($events['events'])) {
 					$s1 = strpos($str, "ภ.จว.");
 					$s2 = strpos($str, "\n", $s1);
 					$stationname = trim(substr($str, $s1, $s2-$s1));
+					
+					//***** get number *****
+					//$str = substr($str, strpos($str, "เพจ"));
+					$s1 = strpos($str, "ยอดรวม");
+					$s2 = strpos($str, "เรื่อง", $s1);
+					$str = substr($str, $s1+2, $s2-($s1+2));
+					$num = preg_replace("/[^0-9]/", '', $str);
+					$numio = $num[0];
+					
 				}else{// สภ.				
 					$s2 = strpos($str, " ", $s1);
 
@@ -86,6 +95,14 @@ if (!is_null($events['events'])) {
 					}
 					//substr(string,start,length)
 					$stationname = trim(substr($str, $s1, $s2-$s1));
+					
+					//***** get number *****
+					//$str = substr($str, strpos($str, "เพจ"));
+					$s1 = strpos($str, "ยอดรวม");
+					$s2 = strpos($str, "ครั้ง", $s1);
+					$str = substr($str, $s1+2, $s2-($s1+2));
+					$num = preg_replace("/[^0-9]/", '', $str);
+					$numio = $num[0];
 				}
 				
 
@@ -98,14 +115,6 @@ if (!is_null($events['events'])) {
 				//$dts .= "_" . $str2 . "_  ";
 				$postdate = formatDate($str2);
 				
-				//***** get number *****
-				//$str = substr($str, strpos($str, "เพจ"));
-				$s1 = strpos($str, "ยอดรวม");
-				$s2 = strpos($str, "ครั้ง", $s1);
-				$str = substr($str, $s1+2, $s2-($s1+2));
-				$num = preg_replace("/[^0-9]/", '', $str);
-				$numio = $num[0];
-
 				//$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 
 				$result = $sql->execute();
