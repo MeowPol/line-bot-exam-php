@@ -61,7 +61,7 @@ if (!is_null($events['events'])) {
 					}					
 					$totalio += $row["numio"];
 										
-					$dts .= "2." . ($j+1) . " " . $row["stationname"] . " " . $row["numio"] . " เรื่อง ".$cmp."\n" ;
+					$dts .= "2." . ($j+1) . " " . $row["stationname"] . " " . $row["numio"] . " เรื่อง\n" ;
 					$j++;
 				}
 				$dts .= "3. จำนวนเพจที่เผยแพร่ " . ($j+1) . " เพจ\n";
