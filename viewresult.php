@@ -24,9 +24,12 @@ $dsn = "pgsql:"
 
 $db = new PDO($dsn);
 */
+    
+
     $dt = date_create();
-    $month_start = date_format($dt,"Y-m-01");
-    $month_end = date_format($dt,"Y-m-t");
+    $dt->setTime(0, 0);
+    $month_start = date_format($dt,"Y-m-01 H:i:s");
+    $month_end = date_format($dt,"Y-m-t H:i:s");
     echo $month_start.'<br/>';
     echo $month_end.'<br/>';
     
