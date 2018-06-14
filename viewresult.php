@@ -56,19 +56,22 @@ $db = new PDO($dsn);
 			   $array[$postdatearr[$i]][$namearr[$j]] = 0;
 		   }
 	   }
-	print_r($array);
+	//print_r($array);
 	   echo "<br/><br/>";
 
 	   
 	   
-	   /*
+	   
 	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate, stationname";	   
 	   echo $query.'<br/>';
 	   echo "<br/><br/>";
 	   $result = $db->query($query);    
-	   print_r($result->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP));
+	   while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+		$array[$row["postdate"]][$row["stationname"]] = $row["numio"];
+	}
+	   print_r($array);
     		echo "<br/><br/>";
-	   */
+	   
 	   
 	   
 
