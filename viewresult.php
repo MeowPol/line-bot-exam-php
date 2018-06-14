@@ -32,7 +32,8 @@ $db = new PDO($dsn);
     echo $month_end.'<br/>';
 
     
-    $query = "select * from IOpoliceNPM where postdate between '" . $month_start . "' and '" .$month_end. "' order by postdate";
+    //$query = "select * from IOpoliceNPM where postdate between '" . $month_start . "' and '" .$month_end. "' order by postdate";
+	   $query = "select postdate, stationname, count(numio) from IOpoliceNPM where postdate between '" . $month_start . "' and '" .$month_end. "' group by postdate, stationname order by postdate";
     echo $query.'<br/>';
 
     $result = $db->query($query);    
