@@ -26,15 +26,15 @@ $db = new PDO($dsn);
 */
 $dt = new DateTime;
 $dt->setTime(0, 0);
-print_r($dt->format('H:i:s'));
+echo $dt->format('H:i:s').'<br/>';
 
     //$dt1 = clone $dt;
     
 $d = $dt->format('Y') . "-" . $dt->format('m') . "-01";    
 $date1 = date_create($d);
-print_r($date1->format('Y m d'));
+echo $date1->format('Y m d').'<br/>';
 $month_end = strtotime('last day of this month', $date1);
-print_r($month_end);
+echo $month_end.'<br/>';
     
     
 $month_start = strtotime('first day of this month', time());
