@@ -32,7 +32,7 @@ echo $dt->format('H:i:s');
     
     $d = $dt->format('Y') . "-" . $dt->format('m') . "-01";    
     $date1 = date_create($d);
-    echo $date1;
+    echo $date1->format('Y m d');
     echo date("Y-m-t", strtotime($date1));
     
 
