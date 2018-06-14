@@ -23,17 +23,18 @@ $dsn = "pgsql:"
 
 $db = new PDO($dsn);
 
+$dt = new DateTime;
+$dt->setTime(0, 0);
+echo $dt->format('H:i:s');
+    
+/*
+$today = getdate();
 $postdate = "2018-06-13";
     
 $query = "select * from IOpoliceNPM where postdate='" . $postdate . "'";
 $result = $db->query($query);    
 //print_r($result->fetchAll());
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    /*
-    echo "<tr colspan=4><td>";
-    print_r($row);
-    echo "</td></tr>";
-    */
     echo "<tr>";
     echo "<td>" . $row["postdate"] . "</td>";
     echo "<td>" . htmlspecialchars($row["stationname"]) . "</td>";
@@ -41,7 +42,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     echo "</tr>";
 }
 $result->closeCursor();
-
+*/
 ?>
    </tbody>
   </table>
