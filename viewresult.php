@@ -24,18 +24,6 @@ $dsn = "pgsql:"
 
 $db = new PDO($dsn);
 */
-    $dt = new DateTime;
- $dt->setTime(0, 0);
-echo $dt->format('H:i:s').'<br/>';
- 
-     //$dt1 = clone $dt;
-     
- $d = $dt->format('Y') . "-" . $dt->format('m') . "-01";    
- $date1 = date_create($d);
-echo $date1->format('Y m d').'<br/>';
-echo date("Y-m-t", strtotime($date1)).'<br/>';
-
-
     $dt = date_create();
     $month_start = date_format($dt,"Y-m-01");
     $month_end = date_format($dt,"Y-m-t");
