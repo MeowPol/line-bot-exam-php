@@ -36,28 +36,32 @@ $db = new PDO($dsn);
 	   
 	   $query = "SELECT DISTINCT postdate FROM IOpoliceNPM " .$where;
 	   echo $query.'<br/>';
-	   $result = $db->query($query);    
-	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 0));
+	   $result = $db->query($query);
+	   $postdatearr = $result->fetchAll(PDO::FETCH_COLUMN, 0);
+	   print_r($postdatearr);
 	   echo "<br/><br/>";	   
 	   
 	   $query = "SELECT DISTINCT stationname FROM IOpoliceNPM " .$where;
 	   echo $query.'<br/>';
-	   $result = $db->query($query);	   
-	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 0));
+	   $result = $db->query($query);
+	   $namearr = $result->fetchAll(PDO::FETCH_COLUMN, 0);
+	   print_r($namearr);
 	   echo "<br/><br/>";
 	   
-	   /*
+	   
 	   $array = array();
+	   for($i=0; $i<count($postdatearr); $i++){
+		   $array[$postdatearr[$i]] = array();
+		   for($j=0; $j<count($namearr); $j++){
+			   $array[$postdatearr[$i]][$namearr[$j]] = 0;
+		   }
+	   }
+	print_r($array);
+	   echo "<br/><br/>";
 
-$array[0] = array();
-$array[0]['name'] = 'John Doe';
-$array[0]['email'] = 'john@example.com';
-
-$array[1] = array();
-$array[1]['name'] = 'Jane Doe';
-$array[1]['email'] = 'jane@example.com';
 	   
 	   
+	   /*
 	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate, stationname";	   
 	   echo $query.'<br/>';
 	   echo "<br/><br/>";
