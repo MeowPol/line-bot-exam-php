@@ -55,15 +55,16 @@ if (!is_null($events['events'])) {
 				$totalio = 0;
 				$provincial = 0;
 				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-					if(strcmp($row["stationname"],"ภ.จว.นครพนม") == 0){
+					$cmp = strcmp($row["stationname"],"ภ.จว.นครพนม");
+					if($cmp == 0){
 						$provincial = $row["numio"];
 					}					
 					$totalio += $row["numio"];
 										
-					$dts .= "2." . ($j+1) . " " . $row["stationname"] . " " . $row["numio"] . " เรื่อง\n";
+					$dts .= "2." . ($j+1) . " " . $row["stationname"] . " " . $row["numio"] . " เรื่อง ".$cmp."\n" ;
 					$j++;
 				}
-				$dts .= "3. จำนวนเพจที่เผยแพร่ " . $j . " เพจ\n";
+				$dts .= "3. จำนวนเพจที่เผยแพร่ " . ($j+1) . " เพจ\n";
 				$dts .= "4 จำนวน IO หน่วยงาน " . $totalio . " เรื่อง\n";
 				$dts .= "5. ยอดรวม " . ($totalio+$provincial) . " ครั้ง\n";
 				$result->closeCursor();				
