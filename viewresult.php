@@ -34,9 +34,13 @@ echo $dt->format('H:i:s').'<br/>';
  $date1 = date_create($d);
 echo $date1->format('Y m d').'<br/>';
 echo date("Y-m-t", strtotime($date1)).'<br/>';
-    
-    $dt = date_format(date_create(),"Y-m-t");
-echo $dt.'<br/>';
+
+
+    $dt = date_create();
+    $month_start = date_format($dt,"Y-m-01");
+    $month_end = date_format($dt,"Y-m-t");
+    echo $month_start.'<br/>';
+    echo $month_end.'<br/>';
     
 
      
