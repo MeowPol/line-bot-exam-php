@@ -41,7 +41,8 @@ if (!is_null($events['events'])) {
 			
 			$firstline = substr($str, 0, strpos($str, "\n"));
 			if(strcmp($firstline,"สรุปยอด") == 0){
-				$secondline = substr($str, strpos($str, "\n"));
+				$secondline = substr($str, strpos($str, "\n")+1);
+				
 				$dts = "1 = " . $firstline . "\n2=" . $secondline;
 				/*
 				$query = "select * from IOpoliceNPM";
