@@ -111,19 +111,22 @@ if (!is_null($events['events'])) {
 				$s2 = strpos($str, "\n", $s1);
 
 				$s1 += strlen("ประจำวันที่");
+				
+				$dts .= "s1=" . $s1 . " s2=" . $s2 . "\n";
+				
 				$datestr = trim(substr($str, $s1, $s2-$s1));
 				//$str2 = preg_replace('!\s+!', ' ', $datestr);
 				//$dts .= "_" . $str2 . "_  ";
 				//$postdate = formatDate($str2);
 				
 				//$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
-				$dts .= $datestr . " " . $postdate . " " . $stationname . " " . $numio . " เรื่อง\n";
-				
+				//$dts .= $datestr . " " . $postdate . " " . $stationname . " " . $numio . " เรื่อง\n";
+				/*
 				$result = $sql->execute();
 				if($result){
 					$dts .= $str2 . "  ". $stationname . " " . $numio . " เรื่อง  เก็บข้อมูลแล้ว\n";
 				}
-				
+				*/
 			}
 		}
 		$i++;
