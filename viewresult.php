@@ -25,7 +25,7 @@ $db = new PDO($dsn);
 
 $postdate = "2018-06-13";
     
-$query = "select * from IOpoliceNPM where postdate=" . $postdate;
+$query = "select * from IOpoliceNPM where postdate='" . $postdate . "'";
 $result = $db->query($query);    
 //print_r($result->fetchAll());
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
