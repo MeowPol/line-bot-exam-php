@@ -63,14 +63,14 @@ $db = new PDO($dsn);
 	   //echo "<br/><br/>";
 	   $result = $db->query($query);    
 	   while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-		   $array[$row["postdate"]][$row["stationname"]] = $row["numio"];
-		   
 		   $cmp = strcmp($row["stationname"],"ภ.จว.นครพนม");
-					if($cmp == 0){
-						$totalio[$row["postdate"]] += $row["numio"]*2;
-					}else{
-						$totalio[$row["postdate"]] += $row["numio"];
-					}
+		   if($cmp == 0){
+			   $num = $row["numio"]*2;
+		   }else{
+			   $num = $row["numio"];						
+		   }
+		   $array[$row["postdate"]][$row["stationname"]] = $num;
+		   $totalio[$row["postdate"]] += $num;
 					
 	   }
 	   //print_r($array);    	
