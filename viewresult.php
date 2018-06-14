@@ -94,8 +94,8 @@ $db = new PDO($dsn);
 	   	}
 		
 			echo "<tr><td>รวม</td>";
-			for($j=0; $j<count($totalio); $j++){
-				echo "<td>". $totalio[$j]."</td>";
+			for($i=0; $i<count($postdatearr); $i++){
+				echo "<td>". $totalio[$postdatearr[$i]]."</td>";
 			}
 			echo "</tr>";
 			print_r($totalio);
