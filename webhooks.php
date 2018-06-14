@@ -119,7 +119,7 @@ if (!is_null($events['events'])) {
 				
 				$result = $sql->execute();
 				if($result){
-					$dts .= $str2 . "  ". $stationname . " " . $numio . " เรื่อง  เก็บข้อมูลแล้ว\n";
+					$dts .= $postdate . "  ". $stationname . " " . $numio . " เรื่อง  เก็บข้อมูลแล้ว\n";
 				}
 				
 			}
