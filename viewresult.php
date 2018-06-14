@@ -34,6 +34,9 @@ echo $dt->format('H:i:s').'<br/>';
  $date1 = date_create($d);
 echo $date1->format('Y m d').'<br/>';
 echo date("Y-m-t", strtotime($date1)).'<br/>';
+    
+echo date_format(date_create(),"Y-m-t").'<br/>';
+    
 
      
 /*     
