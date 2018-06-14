@@ -33,7 +33,9 @@ echo $dt->format('H:i:s').'<br/>';
  $d = $dt->format('Y') . "-" . $dt->format('m') . "-01";    
  $date1 = date_create($d);
 echo $date1->format('Y m d').'<br/>';
- $month_end = strtotime('last day of this month', $date1);
+ $month_end = date("Y-m-t", strtotime($date1));
+    
+    
 echo $month_end->format('Y m d').'<br/>';
      
 /*     
