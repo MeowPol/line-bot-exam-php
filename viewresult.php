@@ -71,7 +71,14 @@ $db = new PDO($dsn);
 		   }
 		   $array[$row["postdate"]][$row["stationname"]] = $num;
 		   $totalio[$row["postdate"]] += $num;
-					
+			
+		   echo "*********************************************";
+		   print_r($row);
+		   echo "<br/><br/>";
+		   print_r($array);
+		   echo "<br/><br/>";
+		   print_r($totalio);
+		   echo "<br/><br/>";
 	   }
 	   //print_r($array);    	
 	   //echo "<br/><br/>";
