@@ -3,15 +3,10 @@
   <title></title>
  </head>
  <body>
-  <table>
-   <thead>
-    <tr>
-     <th>วันที่</th>
-     <th>สภ.</th>
-     <th>จำนวน</th>
-    </tr>
-   </thead>
-   <tbody>
+	   <table>
+	   <thead>
+		<tr>
+		 
 <?php
     
 $dsn = "pgsql:"
@@ -24,31 +19,32 @@ $dsn = "pgsql:"
 
 $db = new PDO($dsn);
 
-    $dt = date_create();
-    $dt->setTime(0, 0);
-    $month_start = date_format($dt,"Y-m-01 H:i:s");
-    $month_end = date_format($dt,"Y-m-t H:i:s");
-    echo $month_start.'<br/>';
-    echo $month_end.'<br/>';
 
-    $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' ";
-    //$query = "select * from IOpoliceNPM ".$where." order by postdate";
-	   
-	   $query = "SELECT DISTINCT postdate FROM IOpoliceNPM " .$where;
-	   echo $query.'<br/>';
+
+	   $dt = date_create();
+	   $dt->setTime(0, 0);
+	   $month_start = date_format($dt,"Y-m-01 H:i:s");
+	   $month_end = date_format($dt,"Y-m-t H:i:s");
+	   //echo $month_start.'<br/>';
+	   //echo $month_end.'<br/>';
+
+    
+	   $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' ";
+	   //$query = "select * from IOpoliceNPM ".$where." order by postdate";
+	   $query = "SELECT DISTINCT postdate FROM IOpoliceNPM " .$where . " order by postdate";
+	   //echo $query.'<br/>';
 	   $result = $db->query($query);
 	   $postdatearr = $result->fetchAll(PDO::FETCH_COLUMN, 0);
-	   print_r($postdatearr);
-	   echo "<br/><br/>";	   
+	   //print_r($postdatearr);
+	   //echo "<br/><br/>";	   
 	   
-	   $query = "SELECT DISTINCT stationname FROM IOpoliceNPM " .$where;
-	   echo $query.'<br/>';
+	   $query = "SELECT DISTINCT stationname FROM IOpoliceNPM " .$where . " order by stationname";
+	   //echo $query.'<br/>';
 	   $result = $db->query($query);
 	   $namearr = $result->fetchAll(PDO::FETCH_COLUMN, 0);
-	   print_r($namearr);
-	   echo "<br/><br/>";
-	   
-	   
+	   //print_r($namearr);
+	   //echo "<br/><br/>";
+	   	   
 	   $array = array();
 	   for($i=0; $i<count($postdatearr); $i++){
 		   $array[$postdatearr[$i]] = array();
@@ -56,37 +52,51 @@ $db = new PDO($dsn);
 			   $array[$postdatearr[$i]][$namearr[$j]] = 0;
 		   }
 	   }
-	//print_r($array);
-	   echo "<br/><br/>";
+	
+	   //print_r($array);
+	   //echo "<br/><br/>";
 
-	   
-	   
-	   
 	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate, stationname";	   
-	   echo $query.'<br/>';
-	   echo "<br/><br/>";
+	   //echo $query.'<br/>';
+	   //echo "<br/><br/>";
 	   $result = $db->query($query);    
 	   while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-		$array[$row["postdate"]][$row["stationname"]] = $row["numio"];
-	}
-	   print_r($array);
-    		echo "<br/><br/>";
+		   $array[$row["postdate"]][$row["stationname"]] = $row["numio"];
+	   }
+	   //print_r($array);    	
+	   //echo "<br/><br/>";
 	   
-	   
-	   
+			echo "<td></td>";
+		for($i=0; $i<count($postdatearr); $i++){
+			echo "<td>". $postdatearr[$i]."</td>";
+		}
+			echo "</tr></thead>";
+			
+		
+		echo "<tbody>";
+			for($j=0; $j<count($namearr); $j++){
+				echo "<tr><td>".$namearr[$j]."</td>";
+			   for($i=0; $i<count($postdatearr); $i++){
+			   echo "<td>". $array[$postdatearr[$i]][$namearr[$j]]."</td>";
+		   		}
+				echo "</tr>";
+	   		}
 
-    //$result = $db->query($query);    
-	//print_r($result->fetchAll());
+
+    
+	   //$result = $db->query($query);    
+	
+	   //print_r($result->fetchAll());
 	   /*
-	while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-		echo "<tr>";
-		echo "<td>" . $row["postdate"] . "</td>";
-		echo "<td>" . htmlspecialchars($row["stationname"]) . "</td>";
-		echo "<td>" . htmlspecialchars($row["numio"]) . "</td>";
-		echo "</tr>";
-	}
-	*/
-	$result->closeCursor();
+	   while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+	   echo "<tr>";
+	   echo "<td>" . $row["postdate"] . "</td>";
+	   echo "<td>" . htmlspecialchars($row["stationname"]) . "</td>";
+	   echo "<td>" . htmlspecialchars($row["numio"]) . "</td>";
+	   echo "</tr>";
+	   }
+	   */
+	   $result->closeCursor();
 
 ?>
    </tbody>
