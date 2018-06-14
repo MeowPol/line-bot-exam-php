@@ -33,10 +33,8 @@ echo $dt->format('H:i:s').'<br/>';
  $d = $dt->format('Y') . "-" . $dt->format('m') . "-01";    
  $date1 = date_create($d);
 echo $date1->format('Y m d').'<br/>';
- $month_end = date("Y-m-t", strtotime($date1));
-    
-    
-echo $month_end->format('Y m d').'<br/>';
+echo date("Y-m-t", strtotime($date1)).'<br/>';
+
      
 /*     
  $month_start = strtotime('first day of this month', time());
