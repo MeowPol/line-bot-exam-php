@@ -120,9 +120,6 @@ if (!is_null($events['events'])) {
 				$postdate = $year . "-" . $d[1] . "-" . $d[0];
 				//$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ";
 
-
-
-
 				//***** get number *****
 				//$str = substr($str, strpos($str, "เพจ"));
 				$s1 = strpos($str, "ยอดรวม");
@@ -133,9 +130,9 @@ if (!is_null($events['events'])) {
 
 				$dts .= "2." . ($i+1) . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 
-				//$result = $sql->execute();
+				$result = $sql->execute();
 				if($result){
-					//$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ". $stationname . " " . $num[0] . " เรื่อง  เก็บข้อมูลแล้ว\n";
+					$dts .= $year . "-" . $d[1] . "-" . $d[0] . "  ". $stationname . " " . $num[0] . " เรื่อง  เก็บข้อมูลแล้ว\n";
 				}
 			}
 		}
