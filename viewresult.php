@@ -38,12 +38,12 @@ $db = new PDO($dsn);
 	   $query = "SELECT DISTINCT postdate FROM IOpoliceNPM " .$where;
 	   echo $query.'<br/>';
 	   $result = $db->query($query);    
-	   print_r($result->fetchAll());
+	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 0));
 	   
 	   $query = "SELECT DISTINCT stationname FROM IOpoliceNPM " .$where;
 	   echo $query.'<br/>';
 	   $result = $db->query($query);    
-	   print_r($result->fetchAll());
+	   print_r($result->fetchAll(PDO::FETCH_COLUMN, 0));
 
     //$result = $db->query($query);    
 	//print_r($result->fetchAll());
