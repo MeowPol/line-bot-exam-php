@@ -12,6 +12,9 @@ echo $num;
 echo "<br/><br/><br/>";
 $numio = $num[0];
 
+echo $numio;
+echo "<br/><br/><br/>";
+
 
 
 
