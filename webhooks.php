@@ -79,11 +79,9 @@ if (!is_null($events['events'])) {
 					
 					//***** get number *****
 					//$str = substr($str, strpos($str, "เพจ"));
-					$s1 = strpos($str, "ยอดรวม");
+					$s1 = strpos($str, "ยอดรวม") + strlen("ยอดรวม");
 					$s2 = strpos($str, "เรื่อง", $s1);
-					$str2 = substr($str, $s1+2, $s2-($s1+2));
-					$dts .= $str2;
-					$numio = preg_replace("/[^0-9]/", '', $str2);
+					$numio = substr($str, $s1, $s2-$s1);					
 				}else{// สภ.				
 					$s2 = strpos($str, " ", $s1);
 
@@ -97,11 +95,9 @@ if (!is_null($events['events'])) {
 					
 					//***** get number *****
 					//$str = substr($str, strpos($str, "เพจ"));
-					$s1 = strpos($str, "ยอดรวม");
-					$s2 = strpos($str, "ครั้ง", $s1);
-					$str2 = substr($str, $s1+2, $s2-($s1+2));
-					$dts .= $str2;
-					$numio = preg_replace("/[^0-9]/", '', $str2);
+					$s1 = strpos($str, "ยอดรวม") + strlen("ยอดรวม");
+					$s2 = strpos($str, "เรื่อง", $s1);
+					$numio = substr($str, $s1, $s2-$s1);
 				}
 				
 
