@@ -110,7 +110,7 @@ if (!is_null($events['events'])) {
 				//$dts .= "_" . $str2 . "_  ";
 				$postdate = formatDate($str2);
 				
-				$dts .= $str2 . " " . $stationname . " " . $num[0] . " เรื่อง\n";
+				//$dts .= $str2 . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 				
 				$result = $sql->execute();
 				if($result){
