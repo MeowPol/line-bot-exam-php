@@ -82,7 +82,7 @@ if (!is_null($events['events'])) {
 					$s1 = strpos($str, "ยอดรวม");
 					$s2 = strpos($str, "เรื่อง", $s1);
 					$str2 = substr($str, $s1+2, $s2-($s1+2));
-					
+					$dts .= $str2;
 					$num = preg_replace("/[^0-9]/", '', $str2);
 					
 					$numio = $num[0];
@@ -103,7 +103,7 @@ if (!is_null($events['events'])) {
 					$s1 = strpos($str, "ยอดรวม");
 					$s2 = strpos($str, "ครั้ง", $s1);
 					$str2 = substr($str, $s1+2, $s2-($s1+2));
-					
+					$dts .= $str2;
 					$num = preg_replace("/[^0-9]/", '', $str2);
 					
 					$numio = $num[0];
