@@ -23,8 +23,9 @@ echo $sql->execute();
 
 $query = "delete from IOpoliceNPM where postdate='2018-06-21'";
 $result = $db->query($query);    
-//print_r($result->fetchAll());
-//$result->closeCursor();
+print_r($result->rowCount());
+$result->closeCursor();
+
 
 ?>
   
