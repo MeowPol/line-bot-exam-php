@@ -120,7 +120,7 @@ if (!is_null($events['events'])) {
 					
 					$s1 = strpos($str2[2], "ยอดรวม") + strlen("ยอดรวม");
 					$s2 = strpos($str2[2], "ครั้ง", $s1);
-					$numio = substr($str2[1], $s1, $s2-$s1);
+					$numio = substr($str2[2], $s1, $s2-$s1);
 					
 				}else{// สภ.				
 					$s2 = strpos($str, " ", $s1);
