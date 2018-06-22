@@ -48,11 +48,11 @@ if (!is_null($events['events'])) {
 				if(strcmp($command,"สรุปยอด") == 0){
 					$postdate = formatDate($secondline);
 
-					$query = "select * from IOpoliceNPM where postdate='" . $postdate . "'";
+					$query = "select * from IOpoliceNPM where postdate='" . $postdate . "' order by stationname";
 					$result = $db->query($query);    
 					//print_r($result->fetchAll());
 
-					$dts .= "1. สถิติการปฏิบัติการ  io  ประจำวันที่ " . $secondline . "\n";
+					$dts .= "1. สถิติการปฏิบัติการ  IO  ประจำวันที่ " . $secondline . "\n";
 					$dts .= "2. จำนวนหัวข้อเผยแพร่ทางสื่อ Social Network ดังนี้\n";
 					$j = 0;
 					$totalio = 0;
