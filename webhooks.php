@@ -80,6 +80,7 @@ if (!is_null($events['events'])) {
 					$result = $db->query($query);
 					
 					$dts .= "ลบข้อมูล " . $result->rowCount() . " รายการ\n";
+					$dts .= $secondline . " " . $stationname . "\n";
 						
 					$result->closeCursor();
 					
@@ -90,6 +91,7 @@ if (!is_null($events['events'])) {
 					$result = $db->query($query);
 					
 					$dts .= "ลบข้อมูล " . $result->rowCount() . " รายการ\n";
+					$dts .= $secondline . "\n";
 						
 					$result->closeCursor();
 					
