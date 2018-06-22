@@ -48,7 +48,7 @@ if (!is_null($events['events'])) {
 				if(strcmp($command,"สรุปยอด") == 0){
 					$postdate = formatDate($secondline);
 
-					$query = "select * from IOpoliceNPM where postdate='" . $postdate . "' order by stationname";
+					$query = "select * from IOpoliceNPM where postdate='" . $postdate . "'";
 					$result = $db->query($query);    
 					//print_r($result->fetchAll());
 
