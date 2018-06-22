@@ -42,38 +42,58 @@ if (!is_null($events['events'])) {
 			$firstline = substr($str, 0, strpos($str, "\n"));
 			$firstchar = substr($str, 0, 1);
 			if(strcmp($firstchar, "#") == 0){
-				$command = explode("\n", substr($str, 1));
-				foreach($command as $c){
-					$dts .= "_" . $c . "_\n";
-				}				
-			}else if(strcmp($firstline,"สรุปยอด") == 0){
-				$secondline = substr($str, strpos($str, "\n")+1);				
-				//$dts = "1=" . $firstline . "\n2=" . $secondline;
-				$postdate = formatDate($secondline);
-				
-				$query = "select * from IOpoliceNPM where postdate='" . $postdate . "'";
-				$result = $db->query($query);    
-				//print_r($result->fetchAll());
-				
-				$dts .= "1. สถิติการปฏิบัติการ  io  ประจำวันที่ " . $secondline . "\n";
-				$dts .= "2. จำนวนหัวข้อเผยแพร่ทางสื่อ Social Network ดังนี้\n";
-				$j = 0;
-				$totalio = 0;
-				$provincial = 0;
-				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-					$cmp = strcmp($row["stationname"],"ภ.จว.นครพนม");
-					if($cmp == 0){
-						$provincial = $row["numio"];
-					}					
-					$totalio += $row["numio"];
-										
-					$dts .= "  2." . ($j+1) . " " . $row["stationname"] . " " . $row["numio"] . " เรื่อง\n" ;
-					$j++;
+				$str2 = explode("\n", substr($str, 1));
+				$command = trim($str2[0]);
+				$secondline = trim($str2[1]);
+				if(strcmp($command,"สรุปยอด") == 0){
+					$postdate = formatDate($secondline);
+
+					$query = "select * from IOpoliceNPM where postdate='" . $postdate . "'";
+					$result = $db->query($query);    
+					//print_r($result->fetchAll());
+
+					$dts .= "1. สถิติการปฏิบัติการ  io  ประจำวันที่ " . $secondline . "\n";
+					$dts .= "2. จำนวนหัวข้อเผยแพร่ทางสื่อ Social Network ดังนี้\n";
+					$j = 0;
+					$totalio = 0;
+					$provincial = 0;
+					while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+						$cmp = strcmp($row["stationname"],"ภ.จว.นครพนม");
+						if($cmp == 0){
+							$provincial = $row["numio"];
+						}					
+						$totalio += $row["numio"];
+
+						$dts .= "  2." . ($j+1) . " " . $row["stationname"] . " " . $row["numio"] . " เรื่อง\n" ;
+						$j++;
+					}
+					$dts .= "3. จำนวนเพจที่เผยแพร่ " . ($j+1) . " เพจ\n";
+					$dts .= "4 จำนวน IO หน่วยงาน " . $totalio . " เรื่อง\n";
+					$dts .= "5. ยอดรวม " . ($totalio+$provincial) . " ครั้ง\n";
+					$result->closeCursor();
+					
+				}else if(strcmp($command,"ลบรายการ") == 0){
+					$postdate = formatDate($secondline);
+					$stationname = trim($str2[2]);
+
+					$query = "delete from IOpoliceNPM where postdate='" . $postdate . "' and stationname='". $stationname . "'";
+					$result = $db->query($query);
+					
+					$dts .= "ลบข้อมูล " . $result->rowCount() . " รายการ\n";
+						
+					$result->closeCursor();
+					
+				}else if(strcmp($command,"ลบวัน") == 0){
+					$postdate = formatDate($secondline);
+
+					$query = "delete from IOpoliceNPM where postdate='" . $postdate . "'";
+					$result = $db->query($query);
+					
+					$dts .= "ลบข้อมูล " . $result->rowCount() . " รายการ\n";
+						
+					$result->closeCursor();
+					
 				}
-				$dts .= "3. จำนวนเพจที่เผยแพร่ " . ($j+1) . " เพจ\n";
-				$dts .= "4 จำนวน IO หน่วยงาน " . $totalio . " เรื่อง\n";
-				$dts .= "5. ยอดรวม " . ($totalio+$provincial) . " ครั้ง\n";
-				$result->closeCursor();				
 			}else{
 			
 				//***** get station name *****
