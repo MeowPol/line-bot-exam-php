@@ -40,7 +40,13 @@ if (!is_null($events['events'])) {
 			$str = $event['message']['text'];
 			
 			$firstline = substr($str, 0, strpos($str, "\n"));
-			if(strcmp($firstline,"สรุปยอด") == 0){
+			$firstchar = substr($str, 0, 1);
+			if(strcmp($firstchar, "#") == 0){
+				$command = explode("\n",$str);
+				foreach($command as $c){
+					$dts .= "_" . $c . "_\n";
+				}				
+			}else if(strcmp($firstline,"สรุปยอด") == 0){
 				$secondline = substr($str, strpos($str, "\n")+1);				
 				//$dts = "1=" . $firstline . "\n2=" . $secondline;
 				$postdate = formatDate($secondline);
