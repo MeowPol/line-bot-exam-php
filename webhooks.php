@@ -42,7 +42,7 @@ if (!is_null($events['events'])) {
 			$firstline = substr($str, 0, strpos($str, "\n"));
 			$firstchar = substr($str, 0, 1);
 			if(strcmp($firstchar, "#") == 0){
-				$command = explode("\n",$str);
+				$command = explode("\n", substr($str, 1));
 				foreach($command as $c){
 					$dts .= "_" . $c . "_\n";
 				}				
