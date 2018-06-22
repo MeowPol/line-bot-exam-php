@@ -96,11 +96,11 @@ if (!is_null($events['events'])) {
 					$result->closeCursor();
 					
 				}
-			}else{
-			
+			}else{			
 				//***** get station name *****
 				$s1 = strpos($str, "สภ.");
-				if ($s1 === false) { //not found ภ.จว.
+				if ($s1 === false) { //not found สภ. ==> ภ.จว.
+					/*
 					$s1 = strpos($str, "ภ.จว.");
 					$s2 = strpos($str, "\n", $s1);
 					$stationname = trim(substr($str, $s1, $s2-$s1));
@@ -110,6 +110,18 @@ if (!is_null($events['events'])) {
 					$s1 = strpos($str, "ยอดรวม") + strlen("ยอดรวม");
 					$s2 = strpos($str, "เรื่อง", $s1);
 					$numio = substr($str, $s1, $s2-$s1);					
+					*/
+					$str2 = explode("\n", substr($str, 1));
+					$stationname = trim($str2[0]);
+					
+					$s1 = strpos($str2[1], "ประจำวันที่") + strlen("ประจำวันที่");
+					$datestr = trim(substr($str2[1], $s1));					
+					$postdate = formatDate($datestr);
+					
+					$s1 = strpos($str2[2], "ยอดรวม") + strlen("ยอดรวม");
+					$s2 = strpos($str2[2], "ครั้ง", $s1);
+					$numio = substr($str2[1], $s1, $s2-$s1);
+					
 				}else{// สภ.				
 					$s2 = strpos($str, " ", $s1);
 
@@ -126,17 +138,19 @@ if (!is_null($events['events'])) {
 					$s1 = strpos($str, "ยอดรวม") + strlen("ยอดรวม");
 					$s2 = strpos($str, "ครั้ง", $s1);
 					$numio = substr($str, $s1, $s2-$s1);
+					
+					//***** get date ************
+					$s1 = strpos($str, "ประจำวันที่");
+					$s2 = strpos($str, "\n", $s1);
+
+					$s1 += strlen("ประจำวันที่");
+					$str2 = preg_replace('!\s+!', ' ', trim(substr($str, $s1, $s2-$s1)));
+					//$dts .= "_" . $str2 . "_  ";
+					$postdate = formatDate($str2);
 				}
 				
 
-				//***** get date ************
-				$s1 = strpos($str, "ประจำวันที่");
-				$s2 = strpos($str, "\n", $s1);
-
-				$s1 += strlen("ประจำวันที่");
-				$str2 = preg_replace('!\s+!', ' ', trim(substr($str, $s1, $s2-$s1)));
-				//$dts .= "_" . $str2 . "_  ";
-				$postdate = formatDate($str2);
+				
 				
 				//$dts .= $str2 . " " . $stationname . " " . $num[0] . " เรื่อง\n";
 				
