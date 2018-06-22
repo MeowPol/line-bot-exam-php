@@ -111,7 +111,7 @@ if (!is_null($events['events'])) {
 					$s2 = strpos($str, "เรื่อง", $s1);
 					$numio = substr($str, $s1, $s2-$s1);					
 					*/
-					$str2 = explode("\n", substr($str, 1));
+					$str2 = explode("\n", $str);
 					$stationname = trim($str2[0]);
 					
 					$s1 = strpos($str2[1], "ประจำวันที่") + strlen("ประจำวันที่");
