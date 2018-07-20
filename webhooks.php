@@ -204,6 +204,7 @@ function formatDate($str2){
 	$d[1] = str_replace("พฤษภาคม", "05", $d[1]);
 	$d[1] = str_replace("มิถุนายน", "06", $d[1]);
 	$d[1] = str_replace("กรกฎาคม", "07", $d[1]);
+	$d[1] = str_replace("กรกฏาคม", "07", $d[1]);
 	$d[1] = str_replace("สิงหาคม", "08", $d[1]);
 	$d[1] = str_replace("กันยายน", "09", $d[1]);
 	$d[1] = str_replace("ตุลาคม", "10", $d[1]);
