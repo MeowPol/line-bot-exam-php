@@ -1,10 +1,7 @@
 <?php // callback.php
-
 require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
-
 $access_token = 'HhmHkpKXiDAcRf9y1OS5d5s9mRWDtSgf3fPE+Cc7HeIf32Du2KDCkIf2GaH7hTX/36fy72AxGD/+nAyF7oLv2Sd2g9nbKVJqjE9tEWft99ofTFRT7t7qW+BZSB2/5WFrDXT5fuBEl5a5WXg/x4UxvgdB04t89/1O/w1cDnyilFU=';
-
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -23,7 +20,6 @@ if (!is_null($events['events'])) {
 	$sql->bindParam(1, $stationname);
 	$sql->bindParam(2, $postdate);
 	$sql->bindParam(3, $numio);
-
 	$i = 0;
 	$dts = "";
 	
@@ -47,11 +43,9 @@ if (!is_null($events['events'])) {
 				$secondline = trim($str2[1]);
 				if(strcmp($command,"สรุปยอด") == 0){
 					$postdate = formatDate($secondline);
-
 					$query = "select * from IOpoliceNPM where postdate='" . $postdate . "'";
 					$result = $db->query($query);    
 					//print_r($result->fetchAll());
-
 					$dts .= "1. สถิติการปฏิบัติการ  IO  ประจำวันที่ " . $secondline . "\n";
 					$dts .= "2. จำนวนหัวข้อเผยแพร่ทางสื่อ Social Network ดังนี้\n";
 					$j = 0;
@@ -63,7 +57,6 @@ if (!is_null($events['events'])) {
 							$provincial = $row["numio"];
 						}					
 						$totalio += $row["numio"];
-
 						$dts .= "  2." . ($j+1) . " " . $row["stationname"] . " " . $row["numio"] . " เรื่อง\n" ;
 						$j++;
 					}
@@ -75,7 +68,6 @@ if (!is_null($events['events'])) {
 				}else if(strcmp($command,"ลบรายการ") == 0){
 					$postdate = formatDate($secondline);
 					$stationname = trim($str2[2]);
-
 					$query = "delete from IOpoliceNPM where postdate='" . $postdate . "' and stationname='". $stationname . "'";
 					$result = $db->query($query);
 					
@@ -86,7 +78,6 @@ if (!is_null($events['events'])) {
 					
 				}else if(strcmp($command,"ลบวัน") == 0){
 					$postdate = formatDate($secondline);
-
 					$query = "delete from IOpoliceNPM where postdate='" . $postdate . "'";
 					$result = $db->query($query);
 					
@@ -124,7 +115,6 @@ if (!is_null($events['events'])) {
 					
 				}else{// สภ.				
 					$s2 = strpos($str, " ", $s1);
-
 					$s22 = strpos($str, "\n", $s1);
 					if ($s22 === false) { //not found
 					} else if($s22 < $s2){
@@ -142,14 +132,12 @@ if (!is_null($events['events'])) {
 					//***** get date ************
 					$s1 = strpos($str, "ประจำวันที่");
 					$s2 = strpos($str, "\n", $s1);
-
 					$s1 += strlen("ประจำวันที่");
 					$str2 = preg_replace('!\s+!', ' ', trim(substr($str, $s1, $s2-$s1)));
 					//$dts .= "_" . $str2 . "_  ";
 					$postdate = formatDate($str2);
 				}
 				
-
 				
 				
 				//$dts .= $str2 . " " . $stationname . " " . $num[0] . " เรื่อง\n";
@@ -179,7 +167,6 @@ if (!is_null($events['events'])) {
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -188,57 +175,44 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			curl_close($ch);
-
 			echo $result . "\r\n";
 }
 echo "OK";
-
 function formatDate($str2){
-	echo "before formate date";
-	print_r($str2);
-	
 	$d = explode(" ",$str2);
 	if(strlen($d[0])<2) $d[0] = "0" . $d[0];
-
-	$d[1] = str_replace("มกราคม ", "01", $d[1]);
-	$d[1] = str_replace("กุมภาพันธ์ ", "02", $d[1]);
-	$d[1] = str_replace("มีนาคม ", "03", $d[1]);
-	$d[1] = str_replace("เมษายน ", "04", $d[1]);
-	$d[1] = str_replace("พฤษภาคม ", "05", $d[1]);
-	$d[1] = str_replace("มิถุนายน ", "06", $d[1]);
-	$d[1] = str_replace("กรกฎาคม ", "07", $d[1]);
-	$d[1] = str_replace("กรกฏาคม ", "07", $d[1]);
-	$d[1] = str_replace("สิงหาคม ", "08", $d[1]);
-	$d[1] = str_replace("กันยายน ", "09", $d[1]);
-	$d[1] = str_replace("ตุลาคม ", "10", $d[1]);
-	$d[1] = str_replace("พฤศจิกายน ", "11", $d[1]);
-	$d[1] = str_replace("ธันวาคม ", "12", $d[1]);
-
-	$d[1] = str_replace("ม.ค. ", "01", $d[1]);
-	$d[1] = str_replace("ก.พ. ", "02", $d[1]);
-	$d[1] = str_replace("มี.ค. ", "03", $d[1]);
-	$d[1] = str_replace("เม.ย. ", "04", $d[1]);
-	$d[1] = str_replace("พ.ค. ", "05", $d[1]);
-	$d[1] = str_replace("มิ.ย. ", "06", $d[1]);
-	$d[1] = str_replace("ก.ค. ", "07", $d[1]);
-	$d[1] = str_replace("ส.ค. ", "08", $d[1]);
-	$d[1] = str_replace("ก.ย. ", "09", $d[1]);
-	$d[1] = str_replace("ต.ค. ", "10", $d[1]);
-	$d[1] = str_replace("พ.ย. ", "11", $d[1]);
-	$d[1] = str_replace("ธ.ค. ", "12", $d[1]);
-	
-	$d[1] = str_replace("  ", " ", $d[1]);
-
+	$d[1] = str_replace("มกราคม", "01", $d[1]);
+	$d[1] = str_replace("กุมภาพันธ์", "02", $d[1]);
+	$d[1] = str_replace("มีนาคม", "03", $d[1]);
+	$d[1] = str_replace("เมษายน", "04", $d[1]);
+	$d[1] = str_replace("พฤษภาคม", "05", $d[1]);
+	$d[1] = str_replace("มิถุนายน", "06", $d[1]);
+	$d[1] = str_replace("กรกฎาคม", "07", $d[1]);
+	$d[1] = str_replace("กรกฏาคม", "07", $d[1]);
+	$d[1] = str_replace("สิงหาคม", "08", $d[1]);
+	$d[1] = str_replace("กันยายน", "09", $d[1]);
+	$d[1] = str_replace("ตุลาคม", "10", $d[1]);
+	$d[1] = str_replace("พฤศจิกายน", "11", $d[1]);
+	$d[1] = str_replace("ธันวาคม", "12", $d[1]);
+	$d[1] = str_replace("ม.ค.", "01", $d[1]);
+	$d[1] = str_replace("ก.พ.", "02", $d[1]);
+	$d[1] = str_replace("มี.ค.", "03", $d[1]);
+	$d[1] = str_replace("เม.ย.", "04", $d[1]);
+	$d[1] = str_replace("พ.ค.", "05", $d[1]);
+	$d[1] = str_replace("มิ.ย.", "06", $d[1]);
+	$d[1] = str_replace("ก.ค.", "07", $d[1]);
+	$d[1] = str_replace("ส.ค.", "08", $d[1]);
+	$d[1] = str_replace("ก.ย.", "09", $d[1]);
+	$d[1] = str_replace("ต.ค.", "10", $d[1]);
+	$d[1] = str_replace("พ.ย.", "11", $d[1]);
+	$d[1] = str_replace("ธ.ค.", "12", $d[1]);
 	$year = (int) $d[2];
 	if($year < 100){	
 		$year = $year+2500-543;
 	}else{
 		$year = $year - 543;
 	}
-	
-	$ret = $year . "-" . $d[1] . "-" . $d[0];
-	print_r($ret);
-	return $ret;
+	return $year . "-" . $d[1] . "-" . $d[0];	
 	
 }
 ?>
