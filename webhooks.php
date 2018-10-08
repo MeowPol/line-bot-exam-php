@@ -194,6 +194,9 @@ if (!is_null($events['events'])) {
 echo "OK";
 
 function formatDate($str2){
+	echo "before formate date";
+	print_r($str2);
+	
 	$d = explode(" ",$str2);
 	if(strlen($d[0])<2) $d[0] = "0" . $d[0];
 
@@ -234,7 +237,7 @@ function formatDate($str2){
 	}
 	
 	$ret = $year . "-" . $d[1] . "-" . $d[0];
-	print_r($ret);	
+	print_r($ret);
 	return $ret;
 	
 }
