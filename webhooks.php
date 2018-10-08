@@ -232,7 +232,10 @@ function formatDate($str2){
 	}else{
 		$year = $year - 543;
 	}
-	return $year . "-" . $d[1] . "-" . $d[0];	
+	
+	$ret = $year . "-" . $d[1] . "-" . $d[0];
+	print_r($ret);	
+	return $ret;
 	
 }
 ?>
