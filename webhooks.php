@@ -87,7 +87,8 @@ if (!is_null($events['events'])) {
 					$result->closeCursor();
 					
 				}
-			}else{			
+			}else{	
+				$check = 0;
 				//***** get station name *****
 				$s1 = strpos($str, "สภ.");
 				if ($s1 === false) { //not found สภ. ==> ภ.จว.
@@ -113,7 +114,8 @@ if (!is_null($events['events'])) {
 						$s1 = strpos($str2[2], "ยอดรวม") + strlen("ยอดรวม");
 						$s2 = strpos($str2[2], "ครั้ง", $s1);
 						$numio = substr($str2[2], $s1, $s2-$s1);
-					
+						
+						$check = 1;
 					
 				}else{// สภ.	
 					if(strpos(substr($str, 0, strpos($str, "สถิติ")), "สภ.")=== false){
@@ -140,18 +142,20 @@ if (!is_null($events['events'])) {
 						$str2 = preg_replace('!\s+!', ' ', trim(substr($str, $s1, $s2-$s1)));
 						//$dts .= "_" . $str2 . "_  ";
 						$postdate = formatDate($str2);
+						
+						$check = 1;
 					}
 				}
 				
 				
 				
 				//$dts .= $str2 . " " . $stationname . " " . $num[0] . " เรื่อง\n";
-				
-				$result = $sql->execute();
-				if($result){
-					$dts .= $postdate . "  ". $stationname . " " . $numio . " เรื่อง  เก็บข้อมูลแล้ว\n";
+				if($check == 1){
+					$result = $sql->execute();
+					if($result){
+						$dts .= $postdate . "  ". $stationname . " " . $numio . " เรื่อง  เก็บข้อมูลแล้ว\n";
+					}
 				}
-				
 			}
 		}
 		$i++;
