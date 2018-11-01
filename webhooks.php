@@ -91,27 +91,30 @@ if (!is_null($events['events'])) {
 				//***** get station name *****
 				$s1 = strpos($str, "สภ.");
 				if ($s1 === false) { //not found สภ. ==> ภ.จว.
-					/*
-					$s1 = strpos($str, "ภ.จว.");
-					$s2 = strpos($str, "\n", $s1);
-					$stationname = trim(substr($str, $s1, $s2-$s1));
-					
-					//***** get number *****
-					//$str = substr($str, strpos($str, "เพจ"));
-					$s1 = strpos($str, "ยอดรวม") + strlen("ยอดรวม");
-					$s2 = strpos($str, "เรื่อง", $s1);
-					$numio = substr($str, $s1, $s2-$s1);					
-					*/
-					$str2 = explode("\n", $str);
-					$stationname = trim($str2[0]);
-					
-					$s1 = strpos($str2[1], "ประจำวันที่") + strlen("ประจำวันที่");
-					$datestr = trim(substr($str2[1], $s1));					
-					$postdate = formatDate($datestr);
-					
-					$s1 = strpos($str2[2], "ยอดรวม") + strlen("ยอดรวม");
-					$s2 = strpos($str2[2], "ครั้ง", $s1);
-					$numio = substr($str2[2], $s1, $s2-$s1);
+					if(strpos(substr($str, 0, strpos($str, "สถิติ")), "สภ.")=== false){
+					}else{
+						/*
+						$s1 = strpos($str, "ภ.จว.");
+						$s2 = strpos($str, "\n", $s1);
+						$stationname = trim(substr($str, $s1, $s2-$s1));
+
+						//***** get number *****
+						//$str = substr($str, strpos($str, "เพจ"));
+						$s1 = strpos($str, "ยอดรวม") + strlen("ยอดรวม");
+						$s2 = strpos($str, "เรื่อง", $s1);
+						$numio = substr($str, $s1, $s2-$s1);					
+						*/
+						$str2 = explode("\n", $str);
+						$stationname = trim($str2[0]);
+
+						$s1 = strpos($str2[1], "ประจำวันที่") + strlen("ประจำวันที่");
+						$datestr = trim(substr($str2[1], $s1));					
+						$postdate = formatDate($datestr);
+
+						$s1 = strpos($str2[2], "ยอดรวม") + strlen("ยอดรวม");
+						$s2 = strpos($str2[2], "ครั้ง", $s1);
+						$numio = substr($str2[2], $s1, $s2-$s1);
+					}
 					
 				}else{// สภ.				
 					$s2 = strpos($str, " ", $s1);
