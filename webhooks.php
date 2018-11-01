@@ -91,8 +91,7 @@ if (!is_null($events['events'])) {
 				//***** get station name *****
 				$s1 = strpos($str, "สภ.");
 				if ($s1 === false) { //not found สภ. ==> ภ.จว.
-					if(strpos(substr($str, 0, strpos($str, "สถิติ")), "สภ.")=== false){
-					}else{
+					
 						/*
 						$s1 = strpos($str, "ภ.จว.");
 						$s2 = strpos($str, "\n", $s1);
@@ -114,31 +113,34 @@ if (!is_null($events['events'])) {
 						$s1 = strpos($str2[2], "ยอดรวม") + strlen("ยอดรวม");
 						$s2 = strpos($str2[2], "ครั้ง", $s1);
 						$numio = substr($str2[2], $s1, $s2-$s1);
+					
+					
+				}else{// สภ.	
+					if(strpos(substr($str, 0, strpos($str, "สถิติ")), "สภ.")=== false){
+					}else{
+						$s2 = strpos($str, " ", $s1);
+						$s22 = strpos($str, "\n", $s1);
+						if ($s22 === false) { //not found
+						} else if($s22 < $s2){
+							$s2 = $s22;	
+						}
+						//substr(string,start,length)
+						$stationname = trim(substr($str, $s1, $s2-$s1));
+
+						//***** get number *****
+						//$str = substr($str, strpos($str, "เพจ"));
+						$s1 = strpos($str, "ยอดรวม") + strlen("ยอดรวม");
+						$s2 = strpos($str, "ครั้ง", $s1);
+						$numio = substr($str, $s1, $s2-$s1);
+
+						//***** get date ************
+						$s1 = strpos($str, "ประจำวันที่");
+						$s2 = strpos($str, "\n", $s1);
+						$s1 += strlen("ประจำวันที่");
+						$str2 = preg_replace('!\s+!', ' ', trim(substr($str, $s1, $s2-$s1)));
+						//$dts .= "_" . $str2 . "_  ";
+						$postdate = formatDate($str2);
 					}
-					
-				}else{// สภ.				
-					$s2 = strpos($str, " ", $s1);
-					$s22 = strpos($str, "\n", $s1);
-					if ($s22 === false) { //not found
-					} else if($s22 < $s2){
-						$s2 = $s22;	
-					}
-					//substr(string,start,length)
-					$stationname = trim(substr($str, $s1, $s2-$s1));
-					
-					//***** get number *****
-					//$str = substr($str, strpos($str, "เพจ"));
-					$s1 = strpos($str, "ยอดรวม") + strlen("ยอดรวม");
-					$s2 = strpos($str, "ครั้ง", $s1);
-					$numio = substr($str, $s1, $s2-$s1);
-					
-					//***** get date ************
-					$s1 = strpos($str, "ประจำวันที่");
-					$s2 = strpos($str, "\n", $s1);
-					$s1 += strlen("ประจำวันที่");
-					$str2 = preg_replace('!\s+!', ' ', trim(substr($str, $s1, $s2-$s1)));
-					//$dts .= "_" . $str2 . "_  ";
-					$postdate = formatDate($str2);
 				}
 				
 				
