@@ -35,7 +35,7 @@ if (!is_null($events['events'])) {
 				
 			$str = $event['message']['text'];
 			
-			$firstline = substr($str, 0, strpos($str, "\n"));
+			$firstline = substr($str, 0, strpos($str, "\n"));  
 			$firstchar = substr($str, 0, 1);
 			if(strcmp($firstchar, "#") == 0){
 				$str2 = explode("\n", substr($str, 1));
