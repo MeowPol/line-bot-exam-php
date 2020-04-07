@@ -8,8 +8,7 @@
 		<tr>
 		 
 <?php
-echo date("Y-m-d H:i:s",strtotime("first day of last month"))."<br>"; // 2017-06-03 00:00:00
-echo date("Y-m-d H:i:s",strtotime("last day of last month"))."<br>"; // 2017-06-03 00:00:00
+
 $dsn = "pgsql:"
     . "host=ec2-23-21-129-50.compute-1.amazonaws.com;"
     . "dbname=dfd97o1ehpqpnh;"
@@ -22,8 +21,16 @@ $db = new PDO($dsn);
 
 	   $dt = date_create();
 	   $dt->setTime(0, 0);
-	   $month_start = date_format($dt,"Y-m-01 H:i:s");
-	   $month_end = date_format($dt,"Y-m-t H:i:s");
+			
+		//current month	
+	   //$month_start = date_format($dt,"Y-m-01 H:i:s");
+	   //$month_end = date_format($dt,"Y-m-t H:i:s");
+	   
+			
+	   $month_start = date("Y-m-d H:i:s",strtotime("first day of last month")->setTime(0, 0));
+	   $month_end = date("Y-m-d H:i:s",strtotime("last day of last month")->setTime(0, 0));
+			
+			
 	   //echo $month_start.'<br/>';
 	   //echo $month_end.'<br/>';
 
