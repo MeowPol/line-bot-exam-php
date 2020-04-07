@@ -102,21 +102,19 @@ $db = new PDO($dsn);
 			
 		
 		echo "<tbody>";
-		print_r($namearr);
+		//print_r($namearr);
 		$stationnamearr = array("ภ.จว.นครพนม","สภ.กุตาไก้","สภ.ท่าอุเทน","สภ.ธาตุพนม","สภ.นาแก","สภ.นาโดน","สภ.นาทม","สภ.นาหว้า","สภ.บ้านกลาง","สภ.บ้านแพง","สภ.ปลาปาก","สภ.พระซอง","สภ.โพนสวรรค์","สภ.เมืองนครพนม","สภ.เรณูนคร","สภ.วังยาง","สภ.ศรีสงคราม","สภ.หนองบ่อ","สภ.หนองฮี","สภ.หลักศิลา");
         	//$namearr is from db	   
 		for($j=0; $j<count($stationnamearr); $j++){
 			echo "<tr><td>".$stationnamearr[$j]."</td>";
 			$indexinarr = array_search($stationnamearr[$j], $namearr);
-			echo $indexinarr;
+			//echo $indexinarr;
 			if($indexinarr !== false) {
-				echo "true";
 				for($i=0; $i<count($postdatearr); $i++){
 					echo "<td>". $array[$postdatearr[$i]][$namearr[$indexinarr]]."</td>";
 				}
 				
 			}else{//not found stationname
-				echo "false";
 				for($i=0; $i<count($postdatearr); $i++){
 					echo "<td></td>";
 				}
