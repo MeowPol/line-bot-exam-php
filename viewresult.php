@@ -8,7 +8,8 @@
 		<tr>
 		 
 <?php
-    
+echo date("Y-m-d H:i:s",strtotime("first day of last month"))."<br>"; // 2017-06-03 00:00:00
+echo date("Y-m-d H:i:s",strtotime("last day of last month"))."<br>"; // 2017-06-03 00:00:00
 $dsn = "pgsql:"
     . "host=ec2-23-21-129-50.compute-1.amazonaws.com;"
     . "dbname=dfd97o1ehpqpnh;"
