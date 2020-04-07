@@ -1,6 +1,6 @@
 <html>
  <head>
-  <title></title>
+  <title>io รายเดือน</title>
  </head>
  <body>
 	   <table border=1>
@@ -66,7 +66,7 @@ $db = new PDO($dsn);
 			
 		
 
-	   $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate, stationname";	   
+       $query = "select postdate, stationname, numio from IOpoliceNPM ".$where." order by postdate, stationname";	   
 	   //echo $query.'<br/>';
 	   //echo "<br/><br/>";
 	   $result = $db->query($query);    
@@ -102,11 +102,20 @@ $db = new PDO($dsn);
 			
 		
 		echo "<tbody>";
-		for($j=0; $j<count($namearr); $j++){
-			echo "<tr><td>".$namearr[$j]."</td>";
-			for($i=0; $i<count($postdatearr); $i++){
-				echo "<td>". $array[$postdatearr[$i]][$namearr[$j]]."</td>";
-		   	}
+		$stationnamearr = array("สภ.กุตาไก้","สภ.ท่าอุเทน","สภ.ธาตุพนม","สภ.นาแก","สภ.นาโดน","สภ.นาทม","สภ.นาหว้า","สภ.บ้านกลาง","สภ.บ้านแพง","สภ.ปลาปาก","สภ.พระซอง","สภ.โพนสวรรค์","สภ.เมืองนครพนม","สภ.เรณูนคร","สภ.วังยาง","สภ.ศรีสงคราม","สภ.หนองบ่อ","สภ.หนองฮี","สภ.หลักศิลา");
+        //$namearr is from db	   
+		for($j=0; $j<count($stationnamearr); $j++){
+			echo "<tr><td>".$stationnamearr[$j]."</td>";
+			$indexinarr = array_search($namearr, $stationnamearr);
+			if(!$indexinarr) {//not found stationname
+				for($i=0; $i<count($postdatearr); $i++){
+					echo "<td></td>";
+				}
+			}else{
+				for($i=0; $i<count($postdatearr); $i++){
+					echo "<td>". $array[$postdatearr[$i]][$namearr[$indexinarr]]."</td>";
+				}
+			}
 			echo "</tr>";
 	   	}
 		
