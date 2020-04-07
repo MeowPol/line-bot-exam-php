@@ -110,10 +110,12 @@ $db = new PDO($dsn);
 			$indexinarr = array_search($stationnamearr[$j], $namearr);
 			echo $indexinarr;
 			if($indexinarr == false) {//not found stationname
+				echo "false";
 				for($i=0; $i<count($postdatearr); $i++){
 					echo "<td></td>";
 				}
 			}else{
+				echo "true";
 				for($i=0; $i<count($postdatearr); $i++){
 					echo "<td>". $array[$postdatearr[$i]][$namearr[$indexinarr]]."</td>";
 				}
