@@ -8,9 +8,14 @@
 		<tr>
 	 
 <?php
+	$getmonth = $_GET["month"];
+	$getyear = $_GET["year"];
+	echo "MONTH = ". $getmonth.'<br/>';
+	echo "YEAR = ". $getyear.'<br/>';
 
-if(isset($_POST['submit']))
-{
+
+	$getmonth = $_GET["month"];
+	$getyear = $_GET["year"];
 
 	$dsn = "pgsql:"
 	    . "host=ec2-23-21-129-50.compute-1.amazonaws.com;"
@@ -145,21 +150,7 @@ if(isset($_POST['submit']))
 		   }
 		   */
 		   $result->closeCursor();
-	
-	
-    $firstName = $_POST['fName'];
-    $lastName = $_POST['lName'];
-    $id = $_POST['id'];
- echo "<h2>ยินดีต้อนรับ คุณ$firstName $lastName</h2>";
- echo "id ของท่านคือ $id <br>";
-}else{// if isset
-?>
-<form name="test" action="<?php /*echo htmlentities($_SERVER['PHP_SELF']);*/ ?>" method="post">
-เดือน 01-12<input type="text" name="month" size=50><br>
-ปี ค.ศ.<input type="text" name="year" size=50><br>
 
-<input type="submit" name="submit" value="ส่งข้อมูล"></td></tr>
-</form>
 
    </tbody>
   </table>
