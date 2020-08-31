@@ -13,8 +13,15 @@
 	echo "MONTH = ". $getmonth.'<br/>';
 	echo "YEAR = ". $getyear.'<br/>';
 
-
-
+	
+			
+	$month_start = $getyear. "-" . $getmonth . "-01 00:00:00";			
+	$month_end = date("Y-m-t H:i:s", strtotime($month_start));
+			
+	echo $month_start.'<br/>';
+	echo $month_end.'<br/>';
+	
+			
 
 	$dsn = "pgsql:"
 	    . "host=ec2-23-21-129-50.compute-1.amazonaws.com;"
@@ -26,6 +33,7 @@
 
 	$db = new PDO($dsn);
 
+			/*
 		   $dt = date_create();
 		   $dt->setTime(0, 0);
 
@@ -40,7 +48,7 @@
 
 		   echo $month_start.'<br/>';
 		   echo $month_end.'<br/>';
-
+			*/
 
 		   $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' ";
 		   //$query = "select * from IOpoliceNPM ".$where." order by postdate";
