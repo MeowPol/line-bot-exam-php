@@ -14,8 +14,7 @@
 	echo "YEAR = ". $getyear.'<br/>';
 
 
-	$getmonth = $_GET["month"];
-	$getyear = $_GET["year"];
+
 
 	$dsn = "pgsql:"
 	    . "host=ec2-23-21-129-50.compute-1.amazonaws.com;"
@@ -150,7 +149,7 @@
 		   }
 		   */
 		   $result->closeCursor();
-
+?>
 
    </tbody>
   </table>
