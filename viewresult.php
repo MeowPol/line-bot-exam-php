@@ -8,7 +8,7 @@
 		<tr>
 	 
 <?php
-$id = $_GET["thisid"];
+
 if(isset($_POST['submit']))
 {
 
@@ -152,9 +152,9 @@ if(isset($_POST['submit']))
     $id = $_POST['id'];
  echo "<h2>ยินดีต้อนรับ คุณ$firstName $lastName</h2>";
  echo "id ของท่านคือ $id <br>";
-}else{
+}else{// if isset
 ?>
-<form name="test" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+<form name="test" action="<?php /*echo htmlentities($_SERVER['PHP_SELF']);*/ ?>" method="post">
 เดือน 01-12<input type="text" name="month" size=50><br>
 ปี ค.ศ.<input type="text" name="year" size=50><br>
 <input type="hidden" name="id" value = "<?php echo $id ?>"><br>
