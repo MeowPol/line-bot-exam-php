@@ -157,7 +157,7 @@ if(isset($_POST['submit']))
 <form name="test" action="<?php /*echo htmlentities($_SERVER['PHP_SELF']);*/ ?>" method="post">
 เดือน 01-12<input type="text" name="month" size=50><br>
 ปี ค.ศ.<input type="text" name="year" size=50><br>
-<input type="hidden" name="id" value = "<?php echo $id ?>"><br>
+
 <input type="submit" name="submit" value="ส่งข้อมูล"></td></tr>
 </form>
 
