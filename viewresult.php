@@ -10,16 +10,14 @@
 <?php
 	$getmonth = $_GET["month"];
 	$getyear = $_GET["year"];
-	echo "MONTH = ". $getmonth.'<br/>';
-	echo "YEAR = ". $getyear.'<br/>';
-
-	
-			
+	//echo "MONTH = ". $getmonth.'<br/>';
+	//echo "YEAR = ". $getyear.'<br/>';
+		
 	$month_start = $getyear. "-" . $getmonth . "-01 00:00:00";			
 	$month_end = date("Y-m-t H:i:s", strtotime($month_start));
 			
-	echo $month_start.'<br/>';
-	echo $month_end.'<br/>';
+// 	echo $month_start.'<br/>';
+// 	echo $month_end.'<br/>';
 	
 			
 
