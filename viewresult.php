@@ -107,7 +107,7 @@
 		   //echo "<br/><br/>";
 
 
-			echo "<td></td>";
+			echo "<td>test</td>";
 			for($i=0; $i<count($postdatearr); $i++){
 				echo "<td>". $postdatearr[$i]."</td>";
 			}
