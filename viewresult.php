@@ -6,44 +6,12 @@
 	   <table border=1>
 	   <thead>
 		<tr>
+	 
 <?php
 $id = $_GET["thisid"];
 if(isset($_POST['submit']))
 {
-    $firstName = $_POST['fName'];
-    $lastName = $_POST['lName'];
-    $id = $_POST['id'];
- echo "<h2>ยินดีต้อนรับ คุณ$firstName $lastName</h2>";
- echo "id ของท่านคือ $id <br>";
-}else{
-?>
-<form name="test" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-ชื่อ<input type="text" name="fName" size=50><br>
-นามสกุล<input type="text" name="lName" size=50><br>
-<input type="hidden" name="id" value = "<?php echo $id ?>"><br>
-<input type="submit" name="submit" value="ส่งข้อมูล"></td></tr>
-</form>
-<?php
-}
-?>		 
-<?php
-$id = $_GET["thisid"];
-if(isset($_POST['submit']))
-{
-    $firstName = $_POST['fName'];
-    $lastName = $_POST['lName'];
-    $id = $_POST['id'];
- echo "<h2>ยินดีต้อนรับ คุณ$firstName $lastName</h2>";
- echo "id ของท่านคือ $id <br>";
-}else{
-?>
-<form name="test" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-เดือน 01-12<input type="text" name="month" size=50><br>
-ปี ค.ศ.<input type="text" name="year" size=50><br>
-<input type="hidden" name="id" value = "<?php echo $id ?>"><br>
-<input type="submit" name="submit" value="ส่งข้อมูล"></td></tr>
-</form>
-<?php
+
 	$dsn = "pgsql:"
 	    . "host=ec2-23-21-129-50.compute-1.amazonaws.com;"
 	    . "dbname=dfd97o1ehpqpnh;"
@@ -177,8 +145,22 @@ if(isset($_POST['submit']))
 		   }
 		   */
 		   $result->closeCursor();
-
+	
+	
+    $firstName = $_POST['fName'];
+    $lastName = $_POST['lName'];
+    $id = $_POST['id'];
+ echo "<h2>ยินดีต้อนรับ คุณ$firstName $lastName</h2>";
+ echo "id ของท่านคือ $id <br>";
+}else{
 ?>
+<form name="test" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+เดือน 01-12<input type="text" name="month" size=50><br>
+ปี ค.ศ.<input type="text" name="year" size=50><br>
+<input type="hidden" name="id" value = "<?php echo $id ?>"><br>
+<input type="submit" name="submit" value="ส่งข้อมูล"></td></tr>
+</form>
+
    </tbody>
   </table>
  </body>
