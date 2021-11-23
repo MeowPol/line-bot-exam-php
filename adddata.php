@@ -1,11 +1,11 @@
 <?php
 $dsn = "pgsql:"
-    . "host=ec2-23-21-129-50.compute-1.amazonaws.com;"
-    . "dbname=dfd97o1ehpqpnh;"
-    . "user=greeojbcxckhvv;"
-    . "port=5432;"
-    . "sslmode=require;"
-    . "password=e3221695be10dad64a793f3949720bc522c81d1f3c71c71d2d53d998b196f5e8";
+	    . "host=ec2-3-222-183-44.compute-1.amazonaws.com;"
+	    . "dbname=dbad8bmvhmfe4b;"
+	    . "user=rydwjtvinqkklj;"
+	    . "port=5432;"
+	    . "sslmode=require;"
+	    . "password=c24a6f1120bc465cc4598c764b4b5f5cb1dd4aed6fdbf2bae0559b787e9a9546";
 $db = new PDO($dsn);
 
 /*
