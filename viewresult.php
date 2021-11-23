@@ -14,7 +14,7 @@
 	//echo "YEAR = ". $getyear.'<br/>';
 		
 	$month_start = $getyear. "-" . $getmonth . "-01 00:00:00";			
-	$month_end = date("Y-m-t H:i:s", strtotime($month_start));
+	$month_end = date("Y-m-t H:i:s", strtotime($month_start)); 
 			
 // 	echo $month_start.'<br/>';
 // 	echo $month_end.'<br/>';
