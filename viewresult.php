@@ -65,7 +65,7 @@
 		   //echo "<br/><br/>";
 
 		   $array = array();
-				$totalio = array();
+				$totalio = array(); 
 		   for($i=0; $i<count($postdatearr); $i++){
 			   $array[$postdatearr[$i]] = array();
 			   $totalio[$postdatearr[$i]] = 0;
