@@ -27,7 +27,7 @@
 	    . "user=rydwjtvinqkklj;"
 	    . "port=5432;"
 	    . "sslmode=require;"
-	    . "password=c24a6f1120bc465cc4598c764b4b5f5cb1dd4aed6fdbf2bae0559b787e9a9546"; 
+	    . "password=c24a6f1120bc465cc4598c764b4b5f5cb1dd4aed6fdbf2bae0559b787e9a9546";
 
 	$db = new PDO($dsn);
 
