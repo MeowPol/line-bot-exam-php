@@ -48,7 +48,7 @@
 		   echo $month_end.'<br/>';
 			*/
 
-		   $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' ";
+		   $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' "; 
 		   //$query = "select * from IOpoliceNPM ".$where." order by postdate";
 		   $query = "SELECT DISTINCT postdate FROM IOpoliceNPM " .$where . " order by postdate";
 		   //echo $query.'<br/>';
