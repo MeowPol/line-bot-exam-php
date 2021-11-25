@@ -136,17 +136,17 @@
 		   echo "</tr>";
 		   }
 		   */
-			
-			
-			
-			//delete data older than 2 months from today
-			$startTime = date("Y-m-1 00:00:00", strtotime("-2 Months"));
-			$where = "where postdate < '" . $startTime . "'";
-	       	   	$query = "select * from IOpoliceNPM ".$where;
+						
+			//delete data older than 01-01-last year
+			$startTime = date("Y-01-01 00:00:00", strtotime("-1 year"));
+			$query = "delete * from IOpoliceNPM where postdate < '" . $startTime . "'";
 		   	echo $query.'<br/>';
-		   	//echo "<br/><br/>";
-		   	//$result = $db->query($query); 
-			
+		   	$result = $db->query($query); 
+			if ($result === TRUE) {
+			  echo "data before " . $startTime . " deleted successfully";
+			} else {
+			  echo "Error deleting record: " . $db->error;
+			}
 			
 		   $result->closeCursor();
 ?>
