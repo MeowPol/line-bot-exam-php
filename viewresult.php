@@ -14,10 +14,9 @@
 	//echo "YEAR = ". $getyear.'<br/>';
 		
 	$month_start = $getyear. "-" . $getmonth . "-01 00:00:00";			
-	$month_end = date("Y-m-t H:i:s", strtotime($month_start)); 
-			
- 	echo $month_start.'<br/>';
- 	echo $month_end.'<br/>';
+	$month_end = date("Y-m-t H:i:s", strtotime($month_start)); 			
+ 	//echo $month_start.'<br/>';
+ 	//echo $month_end.'<br/>';
 	
 			
 
@@ -29,24 +28,7 @@
 	    . "sslmode=require;"
 	    . "password=c24a6f1120bc465cc4598c764b4b5f5cb1dd4aed6fdbf2bae0559b787e9a9546";
 
-	$db = new PDO($dsn);
-
-			/*
-		   $dt = date_create();
-		   $dt->setTime(0, 0);
-
-			//current month	
-		   //$month_start = date_format($dt,"Y-m-01 H:i:s");
-		   //$month_end = date_format($dt,"Y-m-t H:i:s");
-
-
-		   $month_start = date("Y-m-d H:i:s",strtotime("first day of last month midnight"));
-		   $month_end = date("Y-m-d H:i:s",strtotime("last day of last month midnight"));
-
-			*/
-		   echo $month_start.'<br/>';
-		   echo $month_end.'<br/>';
-			
+	$db = new PDO($dsn);			
 
 		   $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' "; 
 		   //$query = "select * from IOpoliceNPM ".$where." order by postdate";
@@ -154,9 +136,13 @@
 		   echo "</tr>";
 		   }
 		   */
-		   
-			$where = "where postdate < '" . $month_start . "'";
-	       	   	$query = "select * from IOpoliceNPM ".$where." order by postdate, stationname";	   
+			
+			
+			
+			//delete data older than 2 months from today
+			$startTime = date("Y-m-1 00:00:00", strtotime("-2 Months"));
+			$where = "where postdate < '" . $startTime . "'";
+	       	   	$query = "select * from IOpoliceNPM ".$where;
 		   	echo $query.'<br/>';
 		   	//echo "<br/><br/>";
 		   	//$result = $db->query($query); 
