@@ -139,7 +139,7 @@
 						
 			//delete data older than 01-01-last year
 			$startTime = date("Y-01-01 00:00:00", strtotime("-1 year"));
-			$query = "delete * from IOpoliceNPM where postdate < '" . $startTime . "'";
+			$query = "delete from IOpoliceNPM where postdate < '" . $startTime . "'";
 		   	echo $query.'<br/>';
 		   	$result = $db->query($query); 
 			if ($result === TRUE) {
