@@ -16,8 +16,8 @@
 	$month_start = $getyear. "-" . $getmonth . "-01 00:00:00";			
 	$month_end = date("Y-m-t H:i:s", strtotime($month_start)); 
 			
-// 	echo $month_start.'<br/>';
-// 	echo $month_end.'<br/>';
+ 	echo $month_start.'<br/>';
+ 	echo $month_end.'<br/>';
 	
 			
 
@@ -43,10 +43,10 @@
 		   $month_start = date("Y-m-d H:i:s",strtotime("first day of last month midnight"));
 		   $month_end = date("Y-m-d H:i:s",strtotime("last day of last month midnight"));
 
-
+			*/
 		   echo $month_start.'<br/>';
 		   echo $month_end.'<br/>';
-			*/
+			
 
 		   $where = "where postdate between '" . $month_start . "' and '" .$month_end. "' "; 
 		   //$query = "select * from IOpoliceNPM ".$where." order by postdate";
@@ -142,7 +142,7 @@
 				echo "</tr>";
 				//print_r($totalio);
 
-		   //$result = $db->query($query);    
+    
 
 		   //print_r($result->fetchAll());
 		   /*
@@ -154,6 +154,14 @@
 		   echo "</tr>";
 		   }
 		   */
+		   
+			$where = "where postdate < '" . $month_start . "'";
+	       	   	$query = "select * from IOpoliceNPM ".$where." order by postdate, stationname";	   
+		   	echo $query.'<br/>';
+		   	//echo "<br/><br/>";
+		   	//$result = $db->query($query); 
+			
+			
 		   $result->closeCursor();
 ?>
 
